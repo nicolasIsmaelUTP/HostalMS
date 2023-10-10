@@ -15,6 +15,7 @@ public class ListProductosFrame extends javax.swing.JFrame {
         this.model = new ProductosTableModel(manager.getProductoDAO());
         this.model.updateModel();
         this.tabla.setModel(model);
+        this.detalle.setEditable(false);
         this.tabla.getSelectionModel().addListSelectionListener(e->{
            boolean seleccionValida = (tabla.getSelectedRow() != -1);
            editar.setEnabled(seleccionValida);
@@ -71,6 +72,7 @@ public class ListProductosFrame extends javax.swing.JFrame {
         toolbar.add(borrar);
 
         guardar.setText("Guardar");
+        guardar.setEnabled(false);
         guardar.setFocusable(false);
         guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -109,12 +111,16 @@ public class ListProductosFrame extends javax.swing.JFrame {
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         Producto producto = getProductoSeleccionado();
         detalle.setProducto(producto);
+        detalle.setEditable(true);
         detalle.loadData();
+        guardar.setEnabled(true);
     }//GEN-LAST:event_editarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         detalle.setProducto(null);
         detalle.loadData();
+        detalle.setEditable(true);
+        guardar.setEnabled(true);
     }//GEN-LAST:event_nuevoActionPerformed
 
     public static void main(String args[]) {

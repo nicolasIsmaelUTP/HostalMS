@@ -5,6 +5,7 @@ import com.nicolas.hostal.modelo.Producto;
 public class DetalleProductoPanel extends javax.swing.JPanel {
 
     private Producto producto;
+    private boolean editable;
     
     public DetalleProductoPanel() {
         initComponents();
@@ -16,6 +17,18 @@ public class DetalleProductoPanel extends javax.swing.JPanel {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+        nombre.setEditable(editable);
+        precio.setEditable(editable);
+        categoria.setEditable(editable);
+        activo.setEnabled(editable);
     }
     
     public void loadData(){
