@@ -1,11 +1,25 @@
 package com.nicolas.hostal.modelo;
         
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Producto_entrante {
+@Entity
+public class Producto_entrante implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int producto_id;
+    @Temporal(TemporalType.DATE)
     private Date fecha_entrada;
+
+    public Producto_entrante() {
+    }
 
     public Producto_entrante(int producto_id, Date fecha_entrada) {
         this.producto_id = producto_id;

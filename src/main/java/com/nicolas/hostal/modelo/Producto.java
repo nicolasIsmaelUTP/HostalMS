@@ -1,12 +1,24 @@
 package com.nicolas.hostal.modelo;
 
-public class Producto {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Producto implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
     private double precio_unitario;
     private String categoria;
     private boolean activo;
 
+    public Producto() {
+    }
+    
     public Producto(String nombre, double precio_unitario, String categoria, boolean activo) {
         this.nombre = nombre;
         this.precio_unitario = precio_unitario;
