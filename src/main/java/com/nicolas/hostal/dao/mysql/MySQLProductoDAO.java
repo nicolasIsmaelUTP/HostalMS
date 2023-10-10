@@ -7,10 +7,15 @@ import com.nicolas.hostal.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
 
 public class MySQLProductoDAO implements ProductoDAO{
     
-    ProductoJpaController productojpa = new ProductoJpaController();
+    ProductoJpaController productojpa;
+
+    MySQLProductoDAO(EntityManagerFactory emf) {
+        this.productojpa = new ProductoJpaController(emf);
+    }
 
     @Override
     public void insertar(Producto a) {
