@@ -15,15 +15,11 @@ public class Producto_entrante implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int producto_id;
+    private int cantidad;
     @Temporal(TemporalType.DATE)
     private Date fecha_entrada;
 
     public Producto_entrante() {
-    }
-
-    public Producto_entrante(int producto_id, Date fecha_entrada) {
-        this.producto_id = producto_id;
-        this.fecha_entrada = fecha_entrada;
     }
 
     public int getId() {
@@ -50,8 +46,17 @@ public class Producto_entrante implements Serializable {
         this.fecha_entrada = fecha_entrada;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+ 
     @Override
     public String toString() {
-        return "Producto_entrante{" + "id=" + id + ", producto_id=" + producto_id + ", fecha_entrada=" + fecha_entrada + '}';
+        return "Producto_entrante{" + "id=" + id + ", producto_id=" + producto_id + ", cantidad=" + cantidad + ", fecha_entrada=" + fecha_entrada + '}';
     }
+    
 }

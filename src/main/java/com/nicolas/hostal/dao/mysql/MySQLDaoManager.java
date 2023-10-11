@@ -26,7 +26,10 @@ public class MySQLDaoManager implements DAOManager{
 
     @Override
     public Producto_entranteDAO getProducto_entranteDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(productos_entrantes == null){
+            productos_entrantes = new MySQLProductoEntranteDAO(emf);
+        }
+        return productos_entrantes;
     }
     
 }
