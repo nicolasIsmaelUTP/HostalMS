@@ -3,6 +3,7 @@ package com.nicolas.hostal.vista;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto_entrante;
+import javax.swing.JOptionPane;
 
 public class ListProductosEntrantesFrame extends javax.swing.JFrame {
 
@@ -13,7 +14,9 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Registrar entrada de producto");
         this.manager = manager;
-        this.model = new ProductosEntrantesTableModel(manager.getProducto_entranteDAO());
+        this.model = new ProductosEntrantesTableModel(
+                manager.getProducto_entranteDAO(),
+                manager.getProductoDAO());
 
         // Copiar y pegar
         obtenerDatos();
@@ -79,6 +82,11 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         editar.setFocusable(false);
         editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(editar);
 
         borrar.setText("Borrar");
@@ -86,6 +94,11 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         borrar.setFocusable(false);
         borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(borrar);
         jToolBar1.add(jSeparator2);
 
@@ -155,6 +168,29 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         obtenerDatos();
         model.fireTableDataChanged();
     }//GEN-LAST:event_registrarActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        Producto_entrante p_entrante = getEntradaSeleccionada();
+        detalle.setEntrante(p_entrante);
+        detalle.setEditable(true);
+        detalle.loadData();
+        registrar.setEnabled(true);
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
+        if (JOptionPane.showConfirmDialog(
+                rootPane,
+                "¿Seguro que quieres eliminar este registro?",
+                "Borrar registro",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            Producto_entrante p_entrante = getEntradaSeleccionada();
+            manager.getProducto_entranteDAO().eliminar(p_entrante);
+
+            obtenerDatos();
+            model.fireTableDataChanged();
+        }
+    }//GEN-LAST:event_borrarActionPerformed
 
     public static void main(String args[]) {
         DAOManager manager = new MySQLDaoManager();

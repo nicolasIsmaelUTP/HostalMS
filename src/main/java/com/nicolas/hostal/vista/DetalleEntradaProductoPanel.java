@@ -54,15 +54,18 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
         this.editable = editable;
         cb_producto.setEnabled(editable);
         tf_cantidad.setEditable(editable);
+        tf_fecha.setEditable(editable);
     }
 
     public void loadData() {
         if (p_entrante != null) {
             // Combo
             tf_cantidad.setText(String.valueOf(p_entrante.getCantidad()));
+            tf_fecha.setText(String.valueOf(p_entrante.getFecha_entrada()));
         } else {
             // Combo
             tf_cantidad.setText("");
+            tf_fecha.setText("");
         }
     }
 

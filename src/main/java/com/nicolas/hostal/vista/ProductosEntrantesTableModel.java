@@ -1,27 +1,28 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.modelo.Producto_entrante;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class ProductosEntrantesTableModel extends AbstractTableModel{
 
-    private DAOManager manager;
     private Producto_entranteDAO entrantes;
     private ProductoDAO productos;
     
     private List<Producto_entrante> datos = new ArrayList<>();
     
-    public ProductosEntrantesTableModel(Producto_entranteDAO entrantes){
+    public ProductosEntrantesTableModel(Producto_entranteDAO entrantes, ProductoDAO productos){
         this.entrantes = entrantes;
+        this.productos = productos;
     }
     
     public void updateModel(){
         datos = entrantes.obtenerTodos();
+        Collections.reverse(datos);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ProductosEntrantesTableModel extends AbstractTableModel{
         Producto_entrante preguntado = datos.get(rowIndex);
         switch (columnIndex) {
             case 0: return preguntado.getId();
-            case 1: return preguntado.getProducto_id();
+            case 1: return productos.obtener(preguntado.getProducto_id()).getNombre();
             case 2: return preguntado.getCantidad();
             case 3: return preguntado.getFecha_entrada();
             default: return "";
