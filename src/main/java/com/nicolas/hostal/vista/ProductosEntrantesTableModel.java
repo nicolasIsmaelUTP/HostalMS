@@ -1,5 +1,7 @@
 package com.nicolas.hostal.vista;
 
+import com.nicolas.hostal.dao.DAOManager;
+import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.modelo.Producto_entrante;
 import java.util.ArrayList;
@@ -8,7 +10,9 @@ import javax.swing.table.AbstractTableModel;
 
 public class ProductosEntrantesTableModel extends AbstractTableModel{
 
+    private DAOManager manager;
     private Producto_entranteDAO entrantes;
+    private ProductoDAO productos;
     
     private List<Producto_entrante> datos = new ArrayList<>();
     

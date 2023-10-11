@@ -25,19 +25,22 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
             borrar.setEnabled(seleccionValida);
         });
         //
-        
+
         // ComboModel
         this.detalle.setModel(new ProductosComboModel(manager.getProductoDAO()));
     }
-    
+
     private void obtenerDatos() {
+        estado.setText("Actualizando modelo...");
+        model.updateModel();
+        estado.setText(model.getRowCount() + " entradas visibles");
     }
-    
-    private Producto_entrante getEntradaSeleccionada(){
+
+    private Producto_entrante getEntradaSeleccionada() {
         int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
         return manager.getProducto_entranteDAO().obtener(id);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,7 +51,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        guardar = new javax.swing.JButton();
+        registrar = new javax.swing.JButton();
         estado = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,23 +75,31 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator1);
 
         editar.setText("Editar");
+        editar.setEnabled(false);
         editar.setFocusable(false);
         editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(editar);
 
         borrar.setText("Borrar");
+        borrar.setEnabled(false);
         borrar.setFocusable(false);
         borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(borrar);
         jToolBar1.add(jSeparator2);
 
-        guardar.setText("Guardar");
-        guardar.setFocusable(false);
-        guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(guardar);
+        registrar.setText("Registrar");
+        registrar.setEnabled(false);
+        registrar.setFocusable(false);
+        registrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        registrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(registrar);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
@@ -122,8 +133,28 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         detalle.setEntrante(null);
         detalle.loadData();
         detalle.setEditable(true);
-        guardar.setEnabled(true);
+        registrar.setEnabled(true);
     }//GEN-LAST:event_nuevoActionPerformed
+
+    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+        detalle.saveData();
+        Producto_entrante p_entrante = detalle.getEntrante();
+        if (p_entrante.getId() == 0) {
+            manager.getProducto_entranteDAO().insertar(p_entrante);
+        } else {
+            manager.getProducto_entranteDAO().modificar(p_entrante);
+        }
+        // Limpiar detalle
+        detalle.setEntrante(null);
+        detalle.setEditable(false);
+        detalle.loadData();
+        // Opciones
+        registrar.setEnabled(false);
+        // Tabla
+        tabla.clearSelection();
+        obtenerDatos();
+        model.fireTableDataChanged();
+    }//GEN-LAST:event_registrarActionPerformed
 
     public static void main(String args[]) {
         DAOManager manager = new MySQLDaoManager();
@@ -137,15 +168,14 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
     private com.nicolas.hostal.vista.DetalleEntradaProductoPanel detalle;
     private javax.swing.JButton editar;
     private javax.swing.JLabel estado;
-    private javax.swing.JButton guardar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton nuevo;
+    private javax.swing.JButton registrar;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 
-    
 }

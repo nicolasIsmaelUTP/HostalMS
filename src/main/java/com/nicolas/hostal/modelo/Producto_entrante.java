@@ -16,7 +16,7 @@ public class Producto_entrante implements Serializable {
     private int id;
     private int producto_id;
     private int cantidad;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_entrada;
 
     public Producto_entrante() {
