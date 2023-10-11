@@ -18,6 +18,13 @@ public class Producto implements Serializable {
 
     public Producto() {
     }
+
+    public Producto(String nombre, double precio_unitario, String categoria) {
+        this.nombre = nombre;
+        this.precio_unitario = precio_unitario;
+        this.categoria = categoria;
+        this.activo = true;
+    }
     
     public Producto(String nombre, double precio_unitario, String categoria, boolean activo) {
         this.nombre = nombre;

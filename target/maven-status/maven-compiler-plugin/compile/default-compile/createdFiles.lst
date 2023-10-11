@@ -2,6 +2,7 @@ com\nicolas\hostal\modelo\Producto.class
 com\nicolas\hostal\vista\DetalleProductoPanel.class
 com\nicolas\hostal\vista\ProductosTableModel.class
 com\nicolas\hostal\vista\DetalleEntradaProductoPanel.class
+com\nicolas\hostal\vista\ListProductosEntrantesFrame$3.class
 com\nicolas\hostal\vista\ListProductosFrame$4.class
 com\nicolas\hostal\vista\ListProductosFrame$2.class
 com\nicolas\hostal\dao\mysql\MySQLProductoDAO.class
@@ -17,9 +18,11 @@ com\nicolas\hostal\vista\ListProductosFrame$1.class
 com\nicolas\hostal\dao\mysql\MySQLDaoManager.class
 com\nicolas\hostal\dao\DAOManager.class
 com\nicolas\hostal\modelo\Producto_.class
+com\nicolas\hostal\vista\ListProductosEntrantesFrame$2.class
 com\nicolas\hostal\vista\ProductosEntrantesTableModel.class
 com\nicolas\hostal\dao\DAO.class
 com\nicolas\hostal\dao\Producto_entranteDAO.class
+com\nicolas\hostal\vista\ListProductosEntrantesFrame$4.class
 com\nicolas\hostal\controlador\Hostal.class
 com\nicolas\hostal\vista\ProductosComboModel.class
 com\nicolas\hostal\vista\ListProductosFrame$3.class
