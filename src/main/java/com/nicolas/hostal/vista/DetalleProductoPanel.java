@@ -41,7 +41,7 @@ public class DetalleProductoPanel extends javax.swing.JPanel {
             nombre.setText("");
             precio.setText("");
             categoria.setText("");
-            activo.setSelected(false);
+            activo.setSelected(true);
         }
         nombre.requestFocus();
     }
