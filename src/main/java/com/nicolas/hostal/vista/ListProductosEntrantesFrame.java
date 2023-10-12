@@ -7,8 +7,7 @@ import com.nicolas.hostal.servicios.ProductoEntranteServicio;
 import javax.swing.JOptionPane;
 
 public class ListProductosEntrantesFrame extends javax.swing.JFrame {
-
-    private DAOManager manager;
+    
     private ProductoEntranteServicio servicio;
     
     private ProductosEntrantesTableModel model;
@@ -17,15 +16,11 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
     public ListProductosEntrantesFrame(DAOManager manager) {
         initComponents();
         setTitle("Registrar entrada de producto");
-        this.manager = manager;
-        this.servicio = new ProductoEntranteServicio(
-            manager.getProducto_entranteDAO(),
-            manager.getProductoDAO());
+        
+        this.servicio = new ProductoEntranteServicio(manager);
         
         // Tabla
-        this.model = new ProductosEntrantesTableModel(
-                manager.getProducto_entranteDAO(),
-                manager.getProductoDAO());
+        this.model = new ProductosEntrantesTableModel(manager);
 
         // Copiar y pegar
         obtenerDatos();
@@ -50,7 +45,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
 
     private Producto_entrante getEntradaSeleccionada() {
         int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
-        return manager.getProducto_entranteDAO().obtener(id);
+        return servicio.obtenerEntradaProducto(id);
     }
 
     @SuppressWarnings("unchecked")
@@ -164,7 +159,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         if (p_entrante.getId() == 0) {
             servicio.registrarEntradaProducto(p_entrante);
         } else {
-            manager.getProducto_entranteDAO().modificar(p_entrante);
+            servicio.modificarEntradaProducto(p_entrante);
         }
         // Limpiar detalle
         detalle.setEntrante(null);
@@ -194,7 +189,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Producto_entrante p_entrante = getEntradaSeleccionada();
-            manager.getProducto_entranteDAO().eliminar(p_entrante);
+            servicio.borrarEntradaProducto(p_entrante);
 
             obtenerDatos();
             model.fireTableDataChanged();

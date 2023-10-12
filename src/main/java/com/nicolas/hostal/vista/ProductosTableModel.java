@@ -26,8 +26,9 @@ public class ProductosTableModel extends AbstractTableModel{
             case 0: return "ID";
             case 1: return "Nombre";
             case 2: return "Precio";
-            case 3: return "Categoria";
-            case 4: return "Activo";
+            case 3: return "Cantidad";
+            case 4: return "Categoria";
+            case 5: return "Activo";
             default: return "[no]";
         }
     }
@@ -39,7 +40,7 @@ public class ProductosTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -49,8 +50,9 @@ public class ProductosTableModel extends AbstractTableModel{
             case 0: return preguntado.getId();
             case 1: return preguntado.getNombre();
             case 2: return preguntado.getPrecio_unitario();
-            case 3: return preguntado.getCategoria();
-            case 4: return preguntado.isActivo();
+            case 3: return preguntado.getCantidad();
+            case 4: return preguntado.getCategoria();
+            case 5: return preguntado.isActivo();
             default: return "";
         }
     }

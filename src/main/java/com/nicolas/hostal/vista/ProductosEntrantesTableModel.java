@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista;
 
+import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.modelo.Producto_entrante;
@@ -15,9 +16,9 @@ public class ProductosEntrantesTableModel extends AbstractTableModel{
     
     private List<Producto_entrante> datos = new ArrayList<>();
     
-    public ProductosEntrantesTableModel(Producto_entranteDAO entrantes, ProductoDAO productos){
-        this.entrantes = entrantes;
-        this.productos = productos;
+    public ProductosEntrantesTableModel(DAOManager manager){
+        this.entrantes = manager.getProducto_entranteDAO();
+        this.productos = manager.getProductoDAO();
     }
     
     public void updateModel(){
