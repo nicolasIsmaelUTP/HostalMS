@@ -14,6 +14,7 @@ public class Producto implements Serializable {
     private String nombre;
     private double precio_unitario;
     private String categoria;
+    private int cantidad;
     private boolean activo;
 
     public Producto() {
@@ -23,16 +24,18 @@ public class Producto implements Serializable {
         this.nombre = nombre;
         this.precio_unitario = precio_unitario;
         this.categoria = categoria;
+        this.cantidad = 0;
         this.activo = true;
     }
-    
-    public Producto(String nombre, double precio_unitario, String categoria, boolean activo) {
+
+    public Producto(String nombre, double precio_unitario, String categoria, int cantidad, boolean activo) {
         this.nombre = nombre;
         this.precio_unitario = precio_unitario;
         this.categoria = categoria;
+        this.cantidad = cantidad;
         this.activo = activo;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -73,6 +76,14 @@ public class Producto implements Serializable {
         this.activo = activo;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     @Override
     public String toString() {
         return nombre;

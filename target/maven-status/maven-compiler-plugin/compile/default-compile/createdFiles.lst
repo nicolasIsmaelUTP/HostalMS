@@ -8,7 +8,6 @@ com\nicolas\hostal\vista\ListProductosFrame$2.class
 com\nicolas\hostal\dao\mysql\MySQLProductoDAO.class
 com\nicolas\hostal\modelo\Producto_entrante.class
 com\nicolas\hostal\persistencia\ProductoJpaController.class
-com\nicolas\hostal\modelo\Almacen.class
 com\nicolas\hostal\persistencia\exceptions\IllegalOrphanException.class
 com\nicolas\hostal\persistencia\exceptions\NonexistentEntityException.class
 com\nicolas\hostal\dao\mysql\MySQLProductoEntranteDAO.class

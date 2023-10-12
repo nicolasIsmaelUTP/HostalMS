@@ -3,17 +3,26 @@ package com.nicolas.hostal.vista;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto_entrante;
+import com.nicolas.hostal.servicios.ProductoEntranteServicio;
 import javax.swing.JOptionPane;
 
 public class ListProductosEntrantesFrame extends javax.swing.JFrame {
 
     private DAOManager manager;
+    private ProductoEntranteServicio servicio;
+    
     private ProductosEntrantesTableModel model;
+    
 
     public ListProductosEntrantesFrame(DAOManager manager) {
         initComponents();
         setTitle("Registrar entrada de producto");
         this.manager = manager;
+        this.servicio = new ProductoEntranteServicio(
+            manager.getProducto_entranteDAO(),
+            manager.getProductoDAO());
+        
+        // Tabla
         this.model = new ProductosEntrantesTableModel(
                 manager.getProducto_entranteDAO(),
                 manager.getProductoDAO());
@@ -153,7 +162,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         detalle.saveData();
         Producto_entrante p_entrante = detalle.getEntrante();
         if (p_entrante.getId() == 0) {
-            manager.getProducto_entranteDAO().insertar(p_entrante);
+            servicio.registrarEntradaProducto(p_entrante);
         } else {
             manager.getProducto_entranteDAO().modificar(p_entrante);
         }

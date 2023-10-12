@@ -2,6 +2,7 @@ C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansP
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\vista\ListProductosEntrantesFrame.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\dao\mysql\MySQLProductoDAO.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\vista\ListProductosFrame.java
+C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\servicios\ProductoEntranteServicio.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\vista\DetalleEntradaProductoPanel.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\persistencia\exceptions\IllegalOrphanException.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\persistencia\exceptions\PreexistingEntityException.java
@@ -13,8 +14,8 @@ C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansP
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\modelo\Producto_entrante.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\dao\mysql\MySQLProductoEntranteDAO.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\persistencia\exceptions\NonexistentEntityException.java
+C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\servicios\TablaProductoServicio.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\persistencia\ProductoJpaController.java
-C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\modelo\Almacen.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\vista\ProductosEntrantesTableModel.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\dao\DAO.java
 C:\Users\NICOLAS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\hostal\src\main\java\com\nicolas\hostal\controlador\Hostal.java
