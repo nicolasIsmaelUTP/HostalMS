@@ -3,11 +3,11 @@ package com.nicolas.hostal.servicios;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.modelo.Producto;
 
-public class TablaProductoServicio {
+public class PoblarServicio {
     
     ProductoDAO dao;
 
-    public TablaProductoServicio(ProductoDAO dao) {
+    public PoblarServicio(ProductoDAO dao) {
         this.dao = dao;
     }
     
