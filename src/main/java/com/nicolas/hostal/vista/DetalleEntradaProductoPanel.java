@@ -1,6 +1,5 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.Producto_entrante;
 import java.time.LocalDateTime;
@@ -21,12 +20,12 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
         model = new ProductosComboModel(null);
     }
 
-    public DetalleEntradaProductoPanel(ProductoDAO dao) {
-        initComponents();
-        model = new ProductosComboModel(dao);
-        model.update();
-        cb_producto.setModel(model);
-    }
+//    public DetalleEntradaProductoPanel(ServManager manager) {
+//        initComponents();
+//        model = new ProductosComboModel(manager);
+//        model.update();
+//        cb_producto.setModel(model);
+//    }
 
     public ProductosComboModel getModel() {
         return model;

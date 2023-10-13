@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.nicolas.hostal.modelo.Producto</class>
     <class>com.nicolas.hostal.modelo.Producto_entrante</class>
+    <class>com.nicolas.hostal.modelo.Habitacion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/losdelfines?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="gerente"/>

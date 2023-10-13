@@ -1,28 +1,30 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.servicios.ProductoServicio;
+import com.nicolas.hostal.servicios.ServManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 
 public class ProductosComboModel extends DefaultComboBoxModel<Producto>{
-    private ProductoDAO productos;
+    
+    private ProductoServicio servicio;
     
     private List<Producto> lista;
 
-    public ProductosComboModel(ProductoDAO productos) {
-        this.productos = productos;
+    public ProductosComboModel(ServManager manager) {
+        if (manager != null){
+        this.servicio = manager.getProductoServicio();
+        }
         this.lista = new ArrayList<>();
     }
     
     public void update(){
-        if (productos != null){
-            lista = productos.obtenerTodos().stream()
-                    .filter(p -> p.isActivo())
-                    .collect(Collectors.toList());
+        if (servicio != null){
             removeAllElements();
+            
+            lista = servicio.obtenerTodosProductosActivos();
             for (Producto p : lista) {
                 addElement(p);
             }

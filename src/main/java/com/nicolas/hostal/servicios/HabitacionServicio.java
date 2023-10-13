@@ -9,7 +9,7 @@ public class HabitacionServicio {
     
     HabitacionDAO habitaciones;
 
-    HabitacionServicio(DAOManager manager){
+    public HabitacionServicio(DAOManager manager){
         this.habitaciones = manager.getHabitacionDAO();
     }
     
@@ -29,5 +29,9 @@ public class HabitacionServicio {
     
     public List<Habitacion> obtenerTodasHabitaciones(){
         return habitaciones.obtenerTodos();
+    }
+    
+    public Habitacion obtenerHabitacion(String id){
+        return habitaciones.obtener(id);
     }
 }

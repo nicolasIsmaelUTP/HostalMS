@@ -1,23 +1,27 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.DAOManager;
-import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.servicios.ProductoServicio;
+import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListProductosFrame extends javax.swing.JFrame {
 
-    private DAOManager manager;
+    private ProductoServicio servicio;
+    
     private ProductosTableModel model;
 
-    private ListProductosFrame(DAOManager manager) {
+    private ListProductosFrame(ServManager manager) {
         initComponents();
         setTitle("Gestionar productos");
-        this.manager = manager;
-        this.model = new ProductosTableModel(manager.getProductoDAO());
+        
+        this.servicio = manager.getProductoServicio();
+        this.model = new ProductosTableModel(manager);
         obtenerDatos();
         this.tabla.setModel(model);
+        
         this.detalle.setEditable(false);
+        
         this.tabla.getSelectionModel().addListSelectionListener(e -> {
             boolean seleccionValida = (tabla.getSelectedRow() != -1);
             editar.setEnabled(seleccionValida);
@@ -131,7 +135,7 @@ public class ListProductosFrame extends javax.swing.JFrame {
 
     private Producto getProductoSeleccionado() {
         int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
-        return manager.getProductoDAO().obtener(id);
+        return servicio.obtenerProducto(id);
     }
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -153,9 +157,9 @@ public class ListProductosFrame extends javax.swing.JFrame {
         detalle.saveData();
         Producto producto = detalle.getProducto();
         if (producto.getId() == 0) {
-            manager.getProductoDAO().insertar(producto);
+            servicio.registrarProducto(producto);
         } else {
-            manager.getProductoDAO().modificar(producto);
+            servicio.modificarProducto(producto);
         }
         // Limpiar detalle
         detalle.setProducto(null);
@@ -177,15 +181,15 @@ public class ListProductosFrame extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Producto producto = getProductoSeleccionado();
-            manager.getProductoDAO().eliminar(producto);
-
+            servicio.borrarProducto(producto);
+            
             obtenerDatos();
             model.fireTableDataChanged();
         }
     }//GEN-LAST:event_borrarActionPerformed
 
     public static void main(String args[]) {
-        DAOManager manager = new MySQLDaoManager();
+        ServManager manager = new ServManager();
         java.awt.EventQueue.invokeLater(() -> {
             new ListProductosFrame(manager).setVisible(true);
         });

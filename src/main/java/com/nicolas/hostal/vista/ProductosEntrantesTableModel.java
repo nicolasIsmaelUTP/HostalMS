@@ -1,9 +1,8 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.DAOManager;
-import com.nicolas.hostal.dao.ProductoDAO;
-import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.modelo.Producto_entrante;
+import com.nicolas.hostal.servicios.ProductoEntranteServicio;
+import com.nicolas.hostal.servicios.ServManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,18 +10,16 @@ import javax.swing.table.AbstractTableModel;
 
 public class ProductosEntrantesTableModel extends AbstractTableModel{
 
-    private Producto_entranteDAO entrantes;
-    private ProductoDAO productos;
+    private ProductoEntranteServicio servicio;
     
     private List<Producto_entrante> datos = new ArrayList<>();
     
-    public ProductosEntrantesTableModel(DAOManager manager){
-        this.entrantes = manager.getProducto_entranteDAO();
-        this.productos = manager.getProductoDAO();
+    public ProductosEntrantesTableModel(ServManager manager){
+        this.servicio = manager.getProductoEntranteServicio();
     }
     
     public void updateModel(){
-        datos = entrantes.obtenerTodos();
+        datos = servicio.obtenerTodasEntradasProducto();
         Collections.reverse(datos);
     }
 
@@ -52,7 +49,7 @@ public class ProductosEntrantesTableModel extends AbstractTableModel{
         Producto_entrante preguntado = datos.get(rowIndex);
         switch (columnIndex) {
             case 0: return preguntado.getId();
-            case 1: return productos.obtener(preguntado.getProducto_id()).getNombre();
+            case 1: return servicio.obtenerProducto(preguntado).getNombre();
             case 2: return preguntado.getCantidad();
             case 3: return preguntado.getFecha_entrada();
             default: return "";

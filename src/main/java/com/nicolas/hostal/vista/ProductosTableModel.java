@@ -1,23 +1,24 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.servicios.ProductoServicio;
+import com.nicolas.hostal.servicios.ServManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class ProductosTableModel extends AbstractTableModel{
     
-    private ProductoDAO productos;
+    private ProductoServicio servicio;
     
     private List<Producto> datos = new ArrayList<>();
     
-    public ProductosTableModel(ProductoDAO productos){
-        this.productos = productos;
+    public ProductosTableModel(ServManager manager){
+        this.servicio = manager.getProductoServicio();
     }
     
     public void updateModel(){
-        datos = productos.obtenerTodos();
+        datos = servicio.obtenerTodosProductos();
     }
 
     @Override

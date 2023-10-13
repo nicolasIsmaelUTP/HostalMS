@@ -1,9 +1,8 @@
 package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.dao.DAOManager;
-import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto_entrante;
 import com.nicolas.hostal.servicios.ProductoEntranteServicio;
+import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListProductosEntrantesFrame extends javax.swing.JFrame {
@@ -13,11 +12,11 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
     private ProductosEntrantesTableModel model;
     
 
-    public ListProductosEntrantesFrame(DAOManager manager) {
+    public ListProductosEntrantesFrame(ServManager manager) {
         initComponents();
         setTitle("Registrar entrada de producto");
         
-        this.servicio = new ProductoEntranteServicio(manager);
+        this.servicio = manager.getProductoEntranteServicio();
         
         // Tabla
         this.model = new ProductosEntrantesTableModel(manager);
@@ -34,7 +33,9 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         //
 
         // ComboModel
-        this.detalle.setModel(new ProductosComboModel(manager.getProductoDAO()));
+        // Luego de haberse instanciado inicialmente para el detalle
+        // se setea el modelo con el ServManager
+        this.detalle.setModel(new ProductosComboModel(manager));
     }
 
     private void obtenerDatos() {
@@ -197,7 +198,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarActionPerformed
 
     public static void main(String args[]) {
-        DAOManager manager = new MySQLDaoManager();
+        ServManager manager = new ServManager();
         java.awt.EventQueue.invokeLater(() -> {
             new ListProductosEntrantesFrame(manager).setVisible(true);
         });
