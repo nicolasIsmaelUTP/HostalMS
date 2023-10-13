@@ -6,4 +6,5 @@ public interface DAOManager {
     
     Producto_entranteDAO getProducto_entranteDAO();
     
+    HabitacionDAO getHabitacionDAO();
 }

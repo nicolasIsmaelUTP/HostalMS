@@ -1,6 +1,7 @@
 package com.nicolas.hostal.dao.mysql;
 
 import com.nicolas.hostal.dao.DAOManager;
+import com.nicolas.hostal.dao.HabitacionDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +15,7 @@ public class MySQLDaoManager implements DAOManager{
     // DAO
     private ProductoDAO productos = null;
     private Producto_entranteDAO productos_entrantes = null;
+    private HabitacionDAO habitaciones = null;
     
     @Override
     public ProductoDAO getProductoDAO() {
@@ -29,6 +31,14 @@ public class MySQLDaoManager implements DAOManager{
             productos_entrantes = new MySQLProductoEntranteDAO(emf);
         }
         return productos_entrantes;
+    }
+
+    @Override
+    public HabitacionDAO getHabitacionDAO() {
+        if(habitaciones == null){
+            habitaciones = new MySQLHabitacionDAO(emf);
+        }
+        return habitaciones;
     }
 
     

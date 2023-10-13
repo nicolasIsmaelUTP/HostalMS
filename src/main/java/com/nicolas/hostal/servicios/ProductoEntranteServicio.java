@@ -16,6 +16,8 @@ public class ProductoEntranteServicio {
         this.entrantes = manager.getProducto_entranteDAO();
         this.productos = manager.getProductoDAO();
     }
+    
+    // CRUD
 
     public void registrarEntradaProducto(Producto_entrante pe) {
         // Aumentar la cantidad del producto
@@ -57,5 +59,11 @@ public class ProductoEntranteServicio {
     
     public Producto_entrante obtenerEntradaProducto(int id){
         return entrantes.obtener(id);
+    }
+    
+    // Obteniendo objetos asociados
+    
+    public Producto obtenerProducto(Producto_entrante pe){
+        return productos.obtener(pe.getProducto_id());
     }
 }
