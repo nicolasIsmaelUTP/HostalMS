@@ -7,4 +7,8 @@ public interface DAOManager {
     Producto_entranteDAO getProducto_entranteDAO();
     
     HabitacionDAO getHabitacionDAO();
+    
+    TipoHabitacionDAO getTipoHabitacionDAO();
+    
+    TarifaDAO getTarifaDAO();
 }

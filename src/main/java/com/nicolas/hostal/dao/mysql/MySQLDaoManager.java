@@ -4,6 +4,8 @@ import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.HabitacionDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
+import com.nicolas.hostal.dao.TarifaDAO;
+import com.nicolas.hostal.dao.TipoHabitacionDAO;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -16,6 +18,8 @@ public class MySQLDaoManager implements DAOManager{
     private ProductoDAO productos = null;
     private Producto_entranteDAO productos_entrantes = null;
     private HabitacionDAO habitaciones = null;
+    private TipoHabitacionDAO tipo_habitaciones = null;
+    private TarifaDAO tarifas = null;
     
     @Override
     public ProductoDAO getProductoDAO() {
@@ -41,5 +45,20 @@ public class MySQLDaoManager implements DAOManager{
         return habitaciones;
     }
 
+    @Override
+    public TipoHabitacionDAO getTipoHabitacionDAO() {
+        if(tipo_habitaciones == null){
+            tipo_habitaciones = new MySQLTipoHabitacionDAO(emf);
+        }
+        return tipo_habitaciones;
+    }
+
+    @Override
+    public TarifaDAO getTarifaDAO() {
+        if(tarifas == null){
+            tarifas = new MySQLTarifaDAO(emf);
+        }
+        return tarifas;
+    }
     
 }
