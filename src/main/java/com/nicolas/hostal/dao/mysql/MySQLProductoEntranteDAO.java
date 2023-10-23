@@ -1,8 +1,8 @@
 package com.nicolas.hostal.dao.mysql;
 
 import com.nicolas.hostal.dao.Producto_entranteDAO;
-import com.nicolas.hostal.modelo.Producto_entrante;
-import com.nicolas.hostal.persistencia.Producto_entranteJpaController;
+import com.nicolas.hostal.modelo.ProductoEntrante;
+import com.nicolas.hostal.persistencia.ProductoEntranteJpaController;
 import com.nicolas.hostal.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
@@ -11,19 +11,19 @@ import javax.persistence.EntityManagerFactory;
 
 public class MySQLProductoEntranteDAO implements Producto_entranteDAO{
 
-    Producto_entranteJpaController jpa;
+    ProductoEntranteJpaController jpa;
     
     MySQLProductoEntranteDAO(EntityManagerFactory emf){
-        this.jpa = new Producto_entranteJpaController(emf);
+        this.jpa = new ProductoEntranteJpaController(emf);
     }
     
     @Override
-    public void insertar(Producto_entrante a) {
+    public void insertar(ProductoEntrante a) {
         jpa.create(a);
     }
 
     @Override
-    public void modificar(Producto_entrante a) {
+    public void modificar(ProductoEntrante a) {
         try {
             jpa.edit(a);
         } catch (Exception ex) {
@@ -32,7 +32,7 @@ public class MySQLProductoEntranteDAO implements Producto_entranteDAO{
     }
 
     @Override
-    public void eliminar(Producto_entrante a) {
+    public void eliminar(ProductoEntrante a) {
         try {
             jpa.destroy(a.getId());
         } catch (NonexistentEntityException ex) {
@@ -41,13 +41,13 @@ public class MySQLProductoEntranteDAO implements Producto_entranteDAO{
     }
 
     @Override
-    public List<Producto_entrante> obtenerTodos() {
-        return jpa.findProducto_entranteEntities();
+    public List<ProductoEntrante> obtenerTodos() {
+        return jpa.findProductoEntranteEntities();
     }
 
     @Override
-    public Producto_entrante obtener(Integer id) {
-        return jpa.findProducto_entrante(id);
+    public ProductoEntrante obtener(Integer id) {
+        return jpa.findProductoEntrante(id);
     }
     
 }

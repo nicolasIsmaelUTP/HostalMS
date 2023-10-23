@@ -1,7 +1,7 @@
 package com.nicolas.hostal.dao;
 
-import com.nicolas.hostal.modelo.Producto_entrante;
+import com.nicolas.hostal.modelo.ProductoEntrante;
 
-public interface Producto_entranteDAO extends DAO<Producto_entrante, Integer>{
+public interface Producto_entranteDAO extends DAO<ProductoEntrante, Integer>{
     
 }

@@ -4,7 +4,7 @@ import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.modelo.Producto;
-import com.nicolas.hostal.modelo.Producto_entrante;
+import com.nicolas.hostal.modelo.ProductoEntrante;
 import java.util.List;
 
 public class ProductoEntranteServicio {
@@ -19,7 +19,7 @@ public class ProductoEntranteServicio {
     
     // CRUD
 
-    public void registrarEntradaProducto(Producto_entrante pe) {
+    public void registrarEntradaProducto(ProductoEntrante pe) {
         // Aumentar la cantidad del producto
         Producto producto = productos.obtener(pe.getProducto_id());
         int cant = pe.getCantidad();
@@ -29,7 +29,7 @@ public class ProductoEntranteServicio {
         entrantes.insertar(pe);
     }
 
-    public void modificarEntradaProducto(Producto_entrante pe) {
+    public void modificarEntradaProducto(ProductoEntrante pe) {
         // Calcular diferencia de la edicion
         int cantEntranteInicial = entrantes.obtener(pe.getId()).getCantidad();
         int cantEntranteFinal = pe.getCantidad();
@@ -43,7 +43,7 @@ public class ProductoEntranteServicio {
         entrantes.modificar(pe);
     }
 
-    public void borrarEntradaProducto(Producto_entrante pe) {
+    public void borrarEntradaProducto(ProductoEntrante pe) {
         // Disminuir la cantidad del producto
         Producto producto = productos.obtener(pe.getProducto_id());
         int cant = pe.getCantidad();
@@ -53,17 +53,17 @@ public class ProductoEntranteServicio {
         entrantes.eliminar(pe);
     }
 
-    public List<Producto_entrante> obtenerTodasEntradasProducto() {
+    public List<ProductoEntrante> obtenerTodasEntradasProducto() {
         return entrantes.obtenerTodos();
     }
     
-    public Producto_entrante obtenerEntradaProducto(int id){
+    public ProductoEntrante obtenerEntradaProducto(int id){
         return entrantes.obtener(id);
     }
     
     // Obteniendo objetos asociados
     
-    public Producto obtenerProducto(Producto_entrante pe){
+    public Producto obtenerProducto(ProductoEntrante pe){
         return productos.obtener(pe.getProducto_id());
     }
 }
