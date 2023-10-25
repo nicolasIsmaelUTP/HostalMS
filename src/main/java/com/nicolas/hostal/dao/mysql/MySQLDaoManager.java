@@ -1,5 +1,6 @@
 package com.nicolas.hostal.dao.mysql;
 
+import com.nicolas.hostal.dao.ClienteDAO;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.HabitacionDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
@@ -20,6 +21,7 @@ public class MySQLDaoManager implements DAOManager{
     private HabitacionDAO habitaciones = null;
     private TipoHabitacionDAO tipo_habitaciones = null;
     private TarifaDAO tarifas = null;
+    private ClienteDAO clientes = null;
     
     @Override
     public ProductoDAO getProductoDAO() {
@@ -59,6 +61,14 @@ public class MySQLDaoManager implements DAOManager{
             tarifas = new MySQLTarifaDAO(emf);
         }
         return tarifas;
+    }
+
+    @Override
+    public ClienteDAO getClienteDAO() {
+        if(clientes == null){
+            clientes = new MySQLClienteDAO(emf);
+        }
+        return clientes;
     }
     
 }

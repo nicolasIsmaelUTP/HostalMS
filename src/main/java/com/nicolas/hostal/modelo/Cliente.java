@@ -1,14 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nicolas.hostal.modelo;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author ISAAC
  */
-public class Cliente {
+@Entity
+public class Cliente implements Serializable {
+    @Id
     private String numDoc;
     private String primerNombre;
     private String segundoNombre;
@@ -16,11 +18,6 @@ public class Cliente {
     private String apellidoMaterno;
 
     public Cliente() {
-        this.numDoc = numDoc;
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
     }
 
     public String getNumDoc() {
@@ -62,5 +59,9 @@ public class Cliente {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
-    
+
+    @Override
+    public String toString() {
+        return primerNombre + " " + apellidoPaterno;
+    }
 }

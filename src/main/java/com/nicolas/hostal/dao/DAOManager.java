@@ -11,4 +11,6 @@ public interface DAOManager {
     TipoHabitacionDAO getTipoHabitacionDAO();
     
     TarifaDAO getTarifaDAO();
+    
+    ClienteDAO getClienteDAO();
 }

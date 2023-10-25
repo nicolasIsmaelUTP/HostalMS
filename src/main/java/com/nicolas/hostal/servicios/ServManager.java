@@ -13,6 +13,7 @@ public class ServManager {
     private ProductoServicio productos = null;
     private ProductoEntranteServicio entrantes = null;
     private HabitacionServicio habitaciones = null;
+    private ClienteServicio clientes = null;
     
     public ProductoServicio getProductoServicio() {
         if(productos == null){
@@ -33,5 +34,12 @@ public class ServManager {
             habitaciones = new HabitacionServicio(dao);
         }
         return habitaciones;
+    }
+    
+    public ClienteServicio getClienteServicio(){
+        if(clientes == null){
+            clientes = new ClienteServicio(dao);
+        }
+        return clientes;
     }
 }
