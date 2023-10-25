@@ -21,6 +21,10 @@ public class MetodoPago implements Serializable {
     public MetodoPago() {
     }
 
+    public MetodoPago(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public int getId() {
         return id;
     }

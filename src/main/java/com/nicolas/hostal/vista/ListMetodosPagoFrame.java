@@ -1,22 +1,22 @@
-package com.nicolas.hostal.vista.clientes;
+package com.nicolas.hostal.vista;
 
-import com.nicolas.hostal.modelo.Cliente;
-import com.nicolas.hostal.servicios.ClienteServicio;
+import com.nicolas.hostal.modelo.MetodoPago;
+import com.nicolas.hostal.servicios.MetodoPagoServicio;
 import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
-public class ListClientesFrame extends javax.swing.JFrame {
+public class ListMetodosPagoFrame extends javax.swing.JFrame {
 
-    private ClienteServicio servicio;
+    private MetodoPagoServicio servicio;
     
-    private ClientesTableModel model;
+    private MetodosPagoTableModel model;
     
-    public ListClientesFrame(ServManager manager) {
+    public ListMetodosPagoFrame(ServManager manager) {
         initComponents();
-        setTitle("Gestionar clientes");
+        setTitle("Gestionar metodos de pago");
         
-        this.servicio = manager.getClienteServicio();
-        this.model = new ClientesTableModel(manager);
+        this.servicio = manager.getMetodoPagoServicio();
+        this.model = new MetodosPagoTableModel(manager);
         obtenerDatos();
         this.tabla.setModel(model);
         
@@ -32,14 +32,14 @@ public class ListClientesFrame extends javax.swing.JFrame {
     final void obtenerDatos(){
         txt_estado.setText("Actualizando modelo...");
         model.updateModel();
-        txt_estado.setText(model.getRowCount()+" clientes visibles");
+        txt_estado.setText(model.getRowCount()+" metodos de pago visibles");
     }
     
-     private Cliente getClienteSeleccionado() {
-        String dni = tabla.getValueAt(tabla.getSelectedRow(), 0).toString();
-        return servicio.obtenerClientePorDni(dni);
+     private MetodoPago getMetodoPagoSeleccionado() {
+        int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
+        return servicio.obtenerMetodoPago(id);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,7 +53,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        detalle = new com.nicolas.hostal.vista.clientes.DetalleClientePanel();
+        detalle = new com.nicolas.hostal.vista.DetalleMetodoPagoPanel();
         txt_estado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,15 +134,15 @@ public class ListClientesFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
-        detalle.setCliente(null);
+        detalle.setMetodoPago(null);
         detalle.loadData();
         detalle.setEditable(true);
         btn_guardar.setEnabled(true);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        Cliente cliente = getClienteSeleccionado();
-        detalle.setCliente(cliente);
+        MetodoPago metodoPago = getMetodoPagoSeleccionado();
+        detalle.setMetodoPago(metodoPago);
         detalle.setEditable(true);
         detalle.loadData();
         btn_guardar.setEnabled(true);
@@ -151,12 +151,12 @@ public class ListClientesFrame extends javax.swing.JFrame {
     private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
         if (JOptionPane.showConfirmDialog(
                 rootPane,
-                "¿Seguro que quieres eliminar este cliente?",
-                "Borrar cliente",
+                "¿Seguro que quieres eliminar este metodo de pago?",
+                "Borrar metodo de pago",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-            Cliente cliente = getClienteSeleccionado();
-            servicio.eliminarCliente(cliente);
+            MetodoPago metodoPago = getMetodoPagoSeleccionado();
+            servicio.eliminarMetodoPago(metodoPago);
             
             obtenerDatos();
             model.fireTableDataChanged();
@@ -165,14 +165,14 @@ public class ListClientesFrame extends javax.swing.JFrame {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         detalle.saveData();
-        Cliente cliente = detalle.getCliente();
-        if (!servicio.existeCliente(cliente.getNumDoc())) {
-            servicio.registrarCliente(cliente);
+        MetodoPago metodoPago = detalle.getMetodoPago();
+        if (metodoPago.getId() == 0) {
+            servicio.registrarMetodoPago(metodoPago);
         } else {
-            servicio.modificarCliente(cliente);
+            servicio.modificarMetodoPago(metodoPago);
         }
         // Limpiar detalle
-        detalle.setCliente(null);
+        detalle.setMetodoPago(null);
         detalle.setEditable(false);
         detalle.loadData();
         // Opciones
@@ -186,7 +186,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         ServManager manager = new ServManager();
         java.awt.EventQueue.invokeLater(() -> {
-            new ListClientesFrame(manager).setVisible(true);
+            new ListMetodosPagoFrame(manager).setVisible(true);
         });
     }
 
@@ -195,7 +195,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_nuevo;
-    private com.nicolas.hostal.vista.clientes.DetalleClientePanel detalle;
+    private com.nicolas.hostal.vista.DetalleMetodoPagoPanel detalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;

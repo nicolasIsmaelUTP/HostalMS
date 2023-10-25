@@ -20,6 +20,14 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
+    public Cliente(String numDoc, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno) {
+        this.numDoc = numDoc;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
+    
     public String getNumDoc() {
         return numDoc;
     }
