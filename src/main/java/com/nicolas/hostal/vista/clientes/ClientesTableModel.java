@@ -1,4 +1,4 @@
-package com.nicolas.hostal.vista;
+package com.nicolas.hostal.vista.clientes;
 
 import com.nicolas.hostal.modelo.Cliente;
 import javax.swing.table.AbstractTableModel;

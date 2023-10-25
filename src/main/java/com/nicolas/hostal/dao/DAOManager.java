@@ -13,4 +13,6 @@ public interface DAOManager {
     TarifaDAO getTarifaDAO();
     
     ClienteDAO getClienteDAO();
+    
+    MetodoPagoDAO getMetodoPagoDAO();
 }

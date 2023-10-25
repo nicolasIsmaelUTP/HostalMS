@@ -8,6 +8,7 @@
     <class>com.nicolas.hostal.modelo.Tarifa</class>
     <class>com.nicolas.hostal.modelo.ProductoEntrante</class>
     <class>com.nicolas.hostal.modelo.Cliente</class>
+    <class>com.nicolas.hostal.modelo.MetodoPago</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/losdelfines?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="gerente"/>

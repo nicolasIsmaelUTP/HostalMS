@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.nicolas.hostal.vista;
+package com.nicolas.hostal.vista.clientes;
 
 import com.nicolas.hostal.modelo.Cliente;
 import com.nicolas.hostal.servicios.ClienteServicio;
@@ -61,7 +61,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        detalle = new com.nicolas.hostal.vista.DetalleClientePanel();
+        detalle = new com.nicolas.hostal.vista.clientes.DetalleClientePanel();
         txt_estado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,6 +81,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator1);
 
         btn_editar.setText("Editar");
+        btn_editar.setEnabled(false);
         btn_editar.setFocusable(false);
         btn_editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -92,6 +93,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
         jToolBar1.add(btn_editar);
 
         btn_borrar.setText("Borrar");
+        btn_borrar.setEnabled(false);
         btn_borrar.setFocusable(false);
         btn_borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -104,6 +106,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator2);
 
         btn_guardar.setText("Guardar");
+        btn_guardar.setEnabled(false);
         btn_guardar.setFocusable(false);
         btn_guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -200,7 +203,7 @@ public class ListClientesFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_nuevo;
-    private com.nicolas.hostal.vista.DetalleClientePanel detalle;
+    private com.nicolas.hostal.vista.clientes.DetalleClientePanel detalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
