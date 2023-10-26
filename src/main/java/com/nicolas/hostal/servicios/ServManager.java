@@ -17,6 +17,8 @@ public class ServManager {
     private HabitacionServicio habitaciones = null;
     private ClienteServicio clientes = null;
     private MetodoPagoServicio metodospago = null;
+    private UsuarioServicio usuarios = null;
+    private RolServicio roles = null;
 
     public ProductoServicio getProductoServicio() {
         if (productos == null) {
@@ -51,5 +53,19 @@ public class ServManager {
             metodospago = new MetodoPagoServicio(dao);
         }
         return metodospago;
+    }
+
+    public UsuarioServicio getUsuarioServicio() {
+        if (usuarios == null) {
+            usuarios = new UsuarioServicio(dao);
+        }
+        return usuarios;
+    }
+    
+    public RolServicio getRolServicio() {
+        if (roles == null) {
+            roles = new RolServicio(dao);
+        }
+        return roles;
     }
 }

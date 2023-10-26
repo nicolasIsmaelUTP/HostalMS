@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
@@ -17,7 +18,7 @@ public class Usuario implements Serializable {
     private String nombre;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Rol> roles;
 
     public Usuario() {
