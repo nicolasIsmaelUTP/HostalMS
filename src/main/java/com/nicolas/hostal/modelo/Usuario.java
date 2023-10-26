@@ -1,6 +1,7 @@
 package com.nicolas.hostal.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -23,6 +24,16 @@ public class Usuario implements Serializable {
 
     public Usuario() {
     }
+
+    public Usuario(String username, String password, String nombre) {
+        this.username = username;
+        this.password = password;
+        this.nombre = nombre;
+        this.fechaRegistro = new Date();
+        this.roles = new ArrayList<>();
+    }
+    
+    
 
     public String getUsername() {
         return username;

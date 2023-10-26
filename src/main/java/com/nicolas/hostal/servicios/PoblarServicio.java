@@ -5,30 +5,38 @@ import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.RolDAO;
+import com.nicolas.hostal.dao.UsuarioDAO;
 import com.nicolas.hostal.modelo.Cliente;
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.Rol;
+import com.nicolas.hostal.modelo.Usuario;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PoblarServicio {
 
     ProductoDAO productos;
     ClienteDAO clientes;
     MetodoPagoDAO metodosPago;
+    UsuarioDAO usuarios;
     RolDAO roles;
 
     public PoblarServicio(DAOManager manager) {
         this.productos = manager.getProductoDAO();
         this.clientes = manager.getClienteDAO();
         this.metodosPago = manager.getMetodoPagoDAO();
+        this.usuarios = manager.getUsuarioDAO();
         this.roles = manager.getRolDAO();
     }
-    
-    public void ejecutar(){
+
+    public void ejecutar() {
         poblarProductos();
         poblarClientes();
         poblarMetodosPago();
         poblarRoles();
+        poblarUsuarios();
     }
 
     public void poblarProductos() {
@@ -45,30 +53,58 @@ public class PoblarServicio {
 
     public void poblarClientes() {
         if (clientes.obtenerTodos().isEmpty()) {
-            clientes.insertar(new Cliente("74184941", "Nicolas", "Ismael", "Alayo", "Arias"));
-            clientes.insertar(new Cliente("12345678", "Juan", "Carlos", "Chavez", "Perez"));
-            clientes.insertar(new Cliente("87654321", "Isaac", "Maria", "Rodriguez", "Lopez"));
-            clientes.insertar(new Cliente("55555555", "Victor", "Alberto", "Torres", "Chavez"));
             clientes.insertar(new Cliente("99999999", "Mariana", "Beatriz", "Sanchez", "Martinez"));
             clientes.insertar(new Cliente("77777777", "Diego", "Andres", "Gomez", "Vargas"));
             clientes.insertar(new Cliente("44444444", "Lucia", "Valeria", "Huaman", "Mendoza"));
         }
     }
-    
-    public void poblarMetodosPago(){
-        if(metodosPago.obtenerTodos().isEmpty()){
+
+    public void poblarMetodosPago() {
+        if (metodosPago.obtenerTodos().isEmpty()) {
             metodosPago.insertar(new MetodoPago("Yape"));
             metodosPago.insertar(new MetodoPago("Plin"));
             metodosPago.insertar(new MetodoPago("Efectivo"));
         }
     }
+
+    // Roles
+    Rol admin = new Rol("admin");
+    Rol gerente = new Rol("gerente");
+    Rol recepcionista = new Rol("recepcionista");
+    Rol almacenero = new Rol("almacenero");
+
+    // Usuarios
+    Usuario nalayo = new Usuario("nalayo", "111", "Nicolas Alayo");
+    Usuario jchavez = new Usuario("jchavez", "222", "Juan Carlos Chavez");
+    Usuario itakamura = new Usuario("itakamura", "333", "Isaac Takamura");
+    Usuario vsevillano = new Usuario("vsevillano", "444", "Victor Sevillano");
+    Usuario jhurtado = new Usuario("jhurtado", "555", "Jose Hurtado");
+
+    private void asignarRoles(){
+        nalayo.setRoles(new ArrayList<>(Arrays.asList(admin,gerente)));
+        jhurtado.setRoles(new ArrayList<>(Arrays.asList(recepcionista)));
+    }
     
-    public void poblarRoles(){
-        if(roles.obtenerTodos().isEmpty()){
-            roles.insertar(new Rol("admin"));
-            roles.insertar(new Rol("gerente"));
-            roles.insertar(new Rol("recepcionista"));
-            roles.insertar(new Rol("almacenero"));
+    public void poblarRoles() {
+        if (roles.obtenerTodos().isEmpty()) {
+            roles.insertar(admin);
+            roles.insertar(gerente);
+            roles.insertar(recepcionista);
+            roles.insertar(almacenero);
         }
     }
+
+    public void poblarUsuarios() {
+        if (usuarios.obtenerTodos().isEmpty()) {
+            
+            asignarRoles();
+            
+            usuarios.insertar(nalayo);
+            usuarios.insertar(jchavez);
+            usuarios.insertar(itakamura);
+            usuarios.insertar(vsevillano);
+            usuarios.insertar(jhurtado);
+        }
+    }
+
 }
