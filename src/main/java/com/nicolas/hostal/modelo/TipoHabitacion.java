@@ -2,6 +2,7 @@ package com.nicolas.hostal.modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class TipoHabitacion implements Serializable {
     private int numCamas;
     @OneToMany
     @JoinColumn(name = "TipoHabitacionId")
-    private ArrayList<Tarifa> tarifas;
+    private List<Tarifa> tarifas;
 
     public TipoHabitacion() {
     }
@@ -63,11 +64,11 @@ public class TipoHabitacion implements Serializable {
         this.numCamas = numCamas;
     }
 
-    public ArrayList<Tarifa> getTarifas() {
+    public List<Tarifa> getTarifas() {
         return tarifas;
     }
 
-    public void setTarifas(ArrayList<Tarifa> tarifas) {
+    public void setTarifas(List<Tarifa> tarifas) {
         this.tarifas = tarifas;
     }
 

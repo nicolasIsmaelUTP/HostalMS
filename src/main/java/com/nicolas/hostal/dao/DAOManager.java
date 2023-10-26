@@ -15,4 +15,8 @@ public interface DAOManager {
     ClienteDAO getClienteDAO();
     
     MetodoPagoDAO getMetodoPagoDAO();
+    
+    UsuarioDAO getUsuarioDAO();
+    
+    RolDAO getRolDAO();
 }

@@ -4,26 +4,31 @@ import com.nicolas.hostal.dao.ClienteDAO;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
+import com.nicolas.hostal.dao.RolDAO;
 import com.nicolas.hostal.modelo.Cliente;
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.modelo.Rol;
 
 public class PoblarServicio {
 
     ProductoDAO productos;
     ClienteDAO clientes;
     MetodoPagoDAO metodosPago;
+    RolDAO roles;
 
     public PoblarServicio(DAOManager manager) {
         this.productos = manager.getProductoDAO();
         this.clientes = manager.getClienteDAO();
         this.metodosPago = manager.getMetodoPagoDAO();
+        this.roles = manager.getRolDAO();
     }
     
     public void ejecutar(){
         poblarProductos();
         poblarClientes();
         poblarMetodosPago();
+        poblarRoles();
     }
 
     public void poblarProductos() {
@@ -55,6 +60,15 @@ public class PoblarServicio {
             metodosPago.insertar(new MetodoPago("Yape"));
             metodosPago.insertar(new MetodoPago("Plin"));
             metodosPago.insertar(new MetodoPago("Efectivo"));
+        }
+    }
+    
+    public void poblarRoles(){
+        if(roles.obtenerTodos().isEmpty()){
+            roles.insertar(new Rol("admin"));
+            roles.insertar(new Rol("gerente"));
+            roles.insertar(new Rol("recepcionista"));
+            roles.insertar(new Rol("almacenero"));
         }
     }
 }
