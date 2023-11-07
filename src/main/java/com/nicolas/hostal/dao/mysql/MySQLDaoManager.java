@@ -15,8 +15,11 @@ import javax.persistence.Persistence;
 
 public class MySQLDaoManager implements DAOManager {
 
+    // Instancia de la clase
+    private static MySQLDaoManager instance = null;
+
     // Fábrica de Gestores de Entidades
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+    private final EntityManagerFactory emf;
 
     // DAO
     private ProductoDAO productos = null;
@@ -28,6 +31,19 @@ public class MySQLDaoManager implements DAOManager {
     private MetodoPagoDAO metodospago = null;
     private UsuarioDAO usuarios = null;
     private RolDAO roles = null;
+
+    // Constructor privado
+    public MySQLDaoManager() {
+        this.emf = Persistence.createEntityManagerFactory("PU");
+    }
+
+    // Método para obtener la instancia de la clase
+    public static MySQLDaoManager getInstance() {
+        if (instance == null) {
+            instance = new MySQLDaoManager();
+        }
+        return instance;
+    }
 
     @Override
     public ProductoDAO getProductoDAO() {
