@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Habitacion implements Serializable {
     @Id
     private String numero;
-    private String descripcion;
+    private String observaciones;
     private String piso;
     private int tipoHabitacionId;
     private boolean disponibilidad;
@@ -16,9 +16,14 @@ public class Habitacion implements Serializable {
     public Habitacion() {
     }
 
-    public Habitacion(String numero, String descripcion, String piso, int tipoHabitacionId) {
+    public Habitacion(String numero, String piso) {
         this.numero = numero;
-        this.descripcion = descripcion;
+        this.piso = piso;
+        this.disponibilidad = true;
+    }
+    
+    public Habitacion(String numero, String piso, int tipoHabitacionId) {
+        this.numero = numero;
         this.piso = piso;
         this.tipoHabitacionId = tipoHabitacionId;
         this.disponibilidad = true;
@@ -32,12 +37,12 @@ public class Habitacion implements Serializable {
         this.numero = numero;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getObservaciones() {
+        return observaciones;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public String getPiso() {

@@ -20,13 +20,6 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
         model = new ProductosComboModel(null);
     }
 
-//    public DetalleEntradaProductoPanel(ServManager manager) {
-//        initComponents();
-//        model = new ProductosComboModel(manager);
-//        model.update();
-//        cb_producto.setModel(model);
-//    }
-
     public ProductosComboModel getModel() {
         return model;
     }
@@ -58,11 +51,20 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
 
     public void loadData() {
         if (p_entrante != null) {
-            // Combo
+            // Aqui se carga la informacion del objeto en los componentes
+            for (int i = 0; i < cb_producto.getItemCount(); i++) {
+                Producto product = cb_producto.getItemAt(i);
+                if (product.getId() == p_entrante.getProducto_id()) {
+                    cb_producto.setSelectedIndex(i);
+                    break;
+                }
+            }
+
             tf_cantidad.setText(String.valueOf(p_entrante.getCantidad()));
             tf_fecha.setText(String.valueOf(p_entrante.getFecha_entrada()));
         } else {
             // Combo
+
             tf_cantidad.setText("");
             tf_fecha.setText("");
         }
@@ -72,11 +74,11 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
         if (p_entrante == null) {
             p_entrante = new ProductoEntrante();
         }
-        
+
         // Manejando el producto
         Producto p = (Producto) model.getSelectedItem();
         p_entrante.setProducto_id(p.getId());
-        
+
         p_entrante.setCantidad(Integer.parseInt(tf_cantidad.getText()));
 
         // Manejando la fecha

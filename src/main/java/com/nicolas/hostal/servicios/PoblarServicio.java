@@ -1,7 +1,7 @@
 package com.nicolas.hostal.servicios;
 
 import com.nicolas.hostal.dao.ClienteDAO;
-import com.nicolas.hostal.dao.DAOManager;
+import com.nicolas.hostal.dao.HabitacionDAO;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.RolDAO;
@@ -9,6 +9,7 @@ import com.nicolas.hostal.dao.TipoHabitacionDAO;
 import com.nicolas.hostal.dao.UsuarioDAO;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Cliente;
+import com.nicolas.hostal.modelo.Habitacion;
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.Rol;
@@ -25,6 +26,7 @@ public class PoblarServicio {
     UsuarioDAO usuarios;
     RolDAO roles;
     TipoHabitacionDAO tiposHabitacion;
+    HabitacionDAO habitaciones;
 
     public PoblarServicio() {
         this.productos = MySQLDaoManager.getInstance().getProductoDAO();
@@ -33,6 +35,7 @@ public class PoblarServicio {
         this.usuarios = MySQLDaoManager.getInstance().getUsuarioDAO();
         this.roles = MySQLDaoManager.getInstance().getRolDAO();
         this.tiposHabitacion = MySQLDaoManager.getInstance().getTipoHabitacionDAO();
+        this.habitaciones = MySQLDaoManager.getInstance().getHabitacionDAO();
     }
 
     public void ejecutar() {
@@ -42,6 +45,7 @@ public class PoblarServicio {
         poblarRoles();
         poblarUsuarios();
         poblarTiposHabitacion();
+        poblarHabitaciones();
     }
 
     public void poblarProductos() {
@@ -56,16 +60,42 @@ public class PoblarServicio {
         }
     }
 
-    public void poblarTiposHabitacion(){
-        if (tiposHabitacion.obtenerTodos().isEmpty()){
-            tiposHabitacion.insertar(new TipoHabitacion("Ventana a la calle basico", 25));
-            tiposHabitacion.insertar(new TipoHabitacion("Ventana a la calle dia", 50));
-            tiposHabitacion.insertar(new TipoHabitacion("Ventana adentro basico", 20));
-            tiposHabitacion.insertar(new TipoHabitacion("Ventana adentro dia", 40));
-            tiposHabitacion.insertar(new TipoHabitacion("Doble cama", 70, 2));
+    public void poblarTiposHabitacion() {
+        if (tiposHabitacion.obtenerTodos().isEmpty()) {
+            tiposHabitacion.insertar(new TipoHabitacion(1, "Ventana a la calle basico", 25));
+            tiposHabitacion.insertar(new TipoHabitacion(2, "Ventana a la calle dia", 50));
+            tiposHabitacion.insertar(new TipoHabitacion(3, "Ventana adentro basico", 20));
+            tiposHabitacion.insertar(new TipoHabitacion(4, "Ventana adentro dia", 40));
+            tiposHabitacion.insertar(new TipoHabitacion(5, "Doble cama", 70, 2));
         }
     }
     
+    public void poblarHabitaciones(){
+        if (habitaciones.obtenerTodos().isEmpty()){
+            habitaciones.insertar(new Habitacion("201", "2", 1));
+            habitaciones.insertar(new Habitacion("202", "2", 3));
+            habitaciones.insertar(new Habitacion("203", "2", 3));
+            habitaciones.insertar(new Habitacion("204", "2", 3));
+            habitaciones.insertar(new Habitacion("205", "2", 3));
+            habitaciones.insertar(new Habitacion("206", "2", 3));
+            habitaciones.insertar(new Habitacion("301", "3", 1));
+            habitaciones.insertar(new Habitacion("302", "3", 3));
+            habitaciones.insertar(new Habitacion("303", "3", 3));
+            habitaciones.insertar(new Habitacion("304", "3", 3));
+            habitaciones.insertar(new Habitacion("305", "3", 3));
+            habitaciones.insertar(new Habitacion("306", "3", 3));
+            habitaciones.insertar(new Habitacion("401", "4", 1));
+            habitaciones.insertar(new Habitacion("402", "4", 3));
+            habitaciones.insertar(new Habitacion("403", "4", 3));
+            habitaciones.insertar(new Habitacion("404", "4", 3));
+            habitaciones.insertar(new Habitacion("405", "4", 3));
+            habitaciones.insertar(new Habitacion("406", "4", 3));
+            habitaciones.insertar(new Habitacion("501", "5", 1));
+            habitaciones.insertar(new Habitacion("502", "5", 5));
+            habitaciones.insertar(new Habitacion("503", "5", 3));
+        }
+    }
+
     public void poblarClientes() {
         if (clientes.obtenerTodos().isEmpty()) {
             clientes.insertar(new Cliente("99999999", "Mariana", "Beatriz", "Sanchez", "Martinez"));
@@ -95,11 +125,11 @@ public class PoblarServicio {
     Usuario vsevillano = new Usuario("vsevillano", "444", "Victor Sevillano");
     Usuario jhurtado = new Usuario("jhurtado", "555", "Jose Hurtado");
 
-    private void asignarRoles(){
-        nalayo.setRoles(new ArrayList<>(Arrays.asList(admin,gerente)));
+    private void asignarRoles() {
+        nalayo.setRoles(new ArrayList<>(Arrays.asList(admin, gerente)));
         jhurtado.setRoles(new ArrayList<>(Arrays.asList(recepcionista)));
     }
-    
+
     public void poblarRoles() {
         if (roles.obtenerTodos().isEmpty()) {
             roles.insertar(admin);
@@ -111,9 +141,9 @@ public class PoblarServicio {
 
     public void poblarUsuarios() {
         if (usuarios.obtenerTodos().isEmpty()) {
-            
+
             asignarRoles();
-            
+
             usuarios.insertar(nalayo);
             usuarios.insertar(jchavez);
             usuarios.insertar(itakamura);

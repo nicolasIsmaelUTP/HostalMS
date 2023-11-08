@@ -29,9 +29,21 @@ public class TipoHabitacion implements Serializable {
         this.precio = precio;
         this.numCamas = 1;
     }
-    
-    
 
+    public TipoHabitacion(int id, String denominacion, float precio, int numCamas) {
+        this.id = id;
+        this.denominacion = denominacion;
+        this.precio = precio;
+        this.numCamas = numCamas;
+    }
+
+    public TipoHabitacion(int id, String denominacion, float precio) {
+        this.id = id;
+        this.denominacion = denominacion;
+        this.precio = precio;
+        this.numCamas = 1;
+    }
+    
     public int getId() {
         return id;
     }

@@ -36,7 +36,7 @@ public class ServManager {
 
     public HabitacionServicio getHabitacionServicio() {
         if (habitaciones == null) {
-            habitaciones = new HabitacionServicio(dao);
+            habitaciones = new HabitacionServicio();
         }
         return habitaciones;
     }
