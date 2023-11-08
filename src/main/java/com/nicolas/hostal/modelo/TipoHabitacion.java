@@ -1,36 +1,36 @@
 package com.nicolas.hostal.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 @Entity
 public class TipoHabitacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String descripcion;
-    private int numMaxOcupantes;
+    private String denominacion;
+    private float precio;
     private int numCamas;
-    @OneToMany
-    @JoinColumn(name = "TipoHabitacionId")
-    private List<Tarifa> tarifas;
 
     public TipoHabitacion() {
     }
 
-    public TipoHabitacion(String descripcion, int numMaxOcupantes, int numCamas) {
-        this.descripcion = descripcion;
-        this.numMaxOcupantes = numMaxOcupantes;
+    public TipoHabitacion(String denominacion, float precio, int numCamas) {
+        this.denominacion = denominacion;
+        this.precio = precio;
         this.numCamas = numCamas;
-        this.tarifas = new ArrayList<>();
     }
+
+    public TipoHabitacion(String denominacion, float precio) {
+        this.denominacion = denominacion;
+        this.precio = precio;
+        this.numCamas = 1;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -40,20 +40,20 @@ public class TipoHabitacion implements Serializable {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDenominacion() {
+        return denominacion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDenominacion(String denominacion) {
+        this.denominacion = denominacion;
     }
 
-    public int getNumMaxOcupantes() {
-        return numMaxOcupantes;
+    public float getPrecio() {
+        return precio;
     }
 
-    public void setNumMaxOcupantes(int numMaxOcupantes) {
-        this.numMaxOcupantes = numMaxOcupantes;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
     public int getNumCamas() {
@@ -64,17 +64,9 @@ public class TipoHabitacion implements Serializable {
         this.numCamas = numCamas;
     }
 
-    public List<Tarifa> getTarifas() {
-        return tarifas;
-    }
-
-    public void setTarifas(List<Tarifa> tarifas) {
-        this.tarifas = tarifas;
-    }
-
     @Override
     public String toString() {
-        return descripcion;
+        return denominacion;
     }
    
 }

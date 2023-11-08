@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.nicolas.hostal.persistencia;
 
 import com.nicolas.hostal.modelo.TipoHabitacion;
@@ -11,6 +15,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+/**
+ *
+ * @author NICOLAS
+ */
 public class TipoHabitacionJpaController implements Serializable {
 
     public TipoHabitacionJpaController(EntityManagerFactory emf) {

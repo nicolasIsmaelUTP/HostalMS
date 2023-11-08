@@ -5,15 +5,17 @@ import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.RolDAO;
+import com.nicolas.hostal.dao.TipoHabitacionDAO;
 import com.nicolas.hostal.dao.UsuarioDAO;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Cliente;
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.Rol;
+import com.nicolas.hostal.modelo.TipoHabitacion;
 import com.nicolas.hostal.modelo.Usuario;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class PoblarServicio {
 
@@ -22,13 +24,15 @@ public class PoblarServicio {
     MetodoPagoDAO metodosPago;
     UsuarioDAO usuarios;
     RolDAO roles;
+    TipoHabitacionDAO tiposHabitacion;
 
-    public PoblarServicio(DAOManager manager) {
-        this.productos = manager.getProductoDAO();
-        this.clientes = manager.getClienteDAO();
-        this.metodosPago = manager.getMetodoPagoDAO();
-        this.usuarios = manager.getUsuarioDAO();
-        this.roles = manager.getRolDAO();
+    public PoblarServicio() {
+        this.productos = MySQLDaoManager.getInstance().getProductoDAO();
+        this.clientes = MySQLDaoManager.getInstance().getClienteDAO();
+        this.metodosPago = MySQLDaoManager.getInstance().getMetodoPagoDAO();
+        this.usuarios = MySQLDaoManager.getInstance().getUsuarioDAO();
+        this.roles = MySQLDaoManager.getInstance().getRolDAO();
+        this.tiposHabitacion = MySQLDaoManager.getInstance().getTipoHabitacionDAO();
     }
 
     public void ejecutar() {
@@ -37,6 +41,7 @@ public class PoblarServicio {
         poblarMetodosPago();
         poblarRoles();
         poblarUsuarios();
+        poblarTiposHabitacion();
     }
 
     public void poblarProductos() {
@@ -51,6 +56,16 @@ public class PoblarServicio {
         }
     }
 
+    public void poblarTiposHabitacion(){
+        if (tiposHabitacion.obtenerTodos().isEmpty()){
+            tiposHabitacion.insertar(new TipoHabitacion("Ventana a la calle basico", 25));
+            tiposHabitacion.insertar(new TipoHabitacion("Ventana a la calle dia", 50));
+            tiposHabitacion.insertar(new TipoHabitacion("Ventana adentro basico", 20));
+            tiposHabitacion.insertar(new TipoHabitacion("Ventana adentro dia", 40));
+            tiposHabitacion.insertar(new TipoHabitacion("Doble cama", 70, 2));
+        }
+    }
+    
     public void poblarClientes() {
         if (clientes.obtenerTodos().isEmpty()) {
             clientes.insertar(new Cliente("99999999", "Mariana", "Beatriz", "Sanchez", "Martinez"));
