@@ -1,7 +1,7 @@
 package com.nicolas.hostal.servicios;
 
-import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +10,8 @@ public class ProductoServicio {
 
     ProductoDAO productos;
 
-    public ProductoServicio(DAOManager manager) {
-        this.productos = manager.getProductoDAO();
+    public ProductoServicio() {
+        this.productos = MySQLDaoManager.getInstance().getProductoDAO();
     }
 
     // CRUD
@@ -39,5 +39,22 @@ public class ProductoServicio {
 
     public Producto obtenerProducto(int id) {
         return productos.obtener(id);
+    }
+
+    // Otros metodos
+
+    public List<String> obtenerCategorias() {
+        List<String> distinctCategorias = obtenerTodosProductosActivos().stream()
+                .map(p -> p.getCategoria())
+                .distinct()
+                .collect(Collectors.toList());
+        return distinctCategorias;
+    }
+
+    public List<Producto> obtenerProductosPorCategoria(String categoria) {
+        List<Producto> productosPorCategoria = obtenerTodosProductosActivos().stream()
+                .filter(p -> p.getCategoria().equals(categoria))
+                .collect(Collectors.toList());
+        return productosPorCategoria;
     }
 }

@@ -22,7 +22,7 @@ public class ServManager {
 
     public ProductoServicio getProductoServicio() {
         if (productos == null) {
-            productos = new ProductoServicio(dao);
+            productos = new ProductoServicio();
         }
         return productos;
     }
