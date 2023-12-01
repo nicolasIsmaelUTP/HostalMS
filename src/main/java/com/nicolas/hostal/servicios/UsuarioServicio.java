@@ -5,7 +5,6 @@ import com.nicolas.hostal.dao.RolDAO;
 import com.nicolas.hostal.dao.UsuarioDAO;
 import com.nicolas.hostal.modelo.Rol;
 import com.nicolas.hostal.modelo.Usuario;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
