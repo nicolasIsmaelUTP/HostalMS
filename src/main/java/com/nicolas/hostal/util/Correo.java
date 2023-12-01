@@ -13,12 +13,19 @@ import javax.mail.internet.MimeMessage;
 
 public class Correo {
     private static final String correo_salida = "trendyco.es@gmail.com";
-    private static final String clave = "App password";
+    private static final String clave = "cvvm rnhr ikhr hrcl";
 
     private Properties props;
     private Session session;
     private MimeMessage mimeMessage;
 
+    /**
+     * Clase que representa un objeto Correo para enviar mensajes de correo electrónico.
+     * 
+     * @param correo_destino La dirección de correo electrónico de destino.
+     * @param asunto El asunto del correo electrónico.
+     * @param mensaje El contenido del correo electrónico.
+     */
     public Correo(String correo_destino, String asunto, String mensaje) {
         props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -36,12 +43,16 @@ public class Correo {
             mimeMessage.setFrom(new InternetAddress(correo_salida));
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(correo_destino));
             mimeMessage.setSubject(asunto);
-            mimeMessage.setText(mensaje, "ISO-8859-1", "html");
+            mimeMessage.setText(mensaje, "UTF-8", "html");
         } catch (AddressException e) {
         } catch (MessagingException e) {
         }
     }
 
+    /**
+     * Envía el correo electrónico utilizando la configuración de sesión y los datos proporcionados.
+     * 
+     */
     public void enviar() {
         try {
             Transport transport = session.getTransport("smtp");

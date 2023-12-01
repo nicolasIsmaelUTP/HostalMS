@@ -12,7 +12,7 @@ public class ProductoServicio {
 
     ProductoDAO productos;
 
-    String correo_destino = "Correo de destino";
+    String correo_destino = "u21221601@utp.edu.pe";
 
     public ProductoServicio() {
         this.productos = MySQLDaoManager.getInstance().getProductoDAO();
@@ -23,11 +23,11 @@ public class ProductoServicio {
         productos.insertar(p);
 
         String asunto = "Nuevo producto registrado: " + p.getNombre();
-        String mensaje = "Se ha registrado un nuevo producto: " + p.getNombre() + "\n"
-                + "Precio: " + p.getPrecio_unitario() + "\n"
-                + "Stock: " + p.getCantidad() + "\n"
-                + "Categoria: " + p.getCategoria() + "\n"
-                + "Activo: " + p.isActivo() + "\n";
+        String mensaje = "Se ha registrado un nuevo producto: " + p.getNombre() + "<br>"
+                + "Precio: " + p.getPrecio_unitario() + "<br>"
+                + "Stock: " + p.getCantidad() + "<br>"
+                + "Categoria: " + p.getCategoria() + "<br>"
+                + "Activo: " + p.isActivo() + "<br>";
         Correo c = new Correo(correo_destino, asunto, mensaje);
         c.enviar();
     }
@@ -36,11 +36,11 @@ public class ProductoServicio {
         productos.modificar(p);
 
         String asunto = "Producto modificado: " + p.getNombre();
-        String mensaje = "Se ha modificado un producto: " + p.getNombre() + "\n"
-                + "Precio: " + p.getPrecio_unitario() + "\n"
-                + "Stock: " + p.getCantidad() + "\n"
-                + "Categoria: " + p.getCategoria() + "\n"
-                + "Activo: " + p.isActivo() + "\n";
+        String mensaje = "Se ha modificado un producto: " + p.getNombre() + "<br>"
+                + "Precio: " + p.getPrecio_unitario() + "<br>"
+                + "Stock: " + p.getCantidad() + "<br>"
+                + "Categoria: " + p.getCategoria() + "<br>"
+                + "Activo: " + p.isActivo() + "<br>";
         Correo c = new Correo(correo_destino, asunto, mensaje);
         c.enviar();
     }
@@ -49,11 +49,11 @@ public class ProductoServicio {
         productos.eliminar(p);
 
         String asunto = "Producto eliminado: " + p.getNombre();
-        String mensaje = "Se ha eliminado un producto: " + p.getNombre() + "\n"
-                + "Precio: " + p.getPrecio_unitario() + "\n"
-                + "Stock: " + p.getCantidad() + "\n"
-                + "Categoria: " + p.getCategoria() + "\n"
-                + "Activo: " + p.isActivo() + "\n";
+        String mensaje = "Se ha eliminado un producto: " + p.getNombre() + "<br>"
+                + "Precio: " + p.getPrecio_unitario() + "<br>"
+                + "Stock: " + p.getCantidad() + "<br>"
+                + "Categoria: " + p.getCategoria() + "<br>"
+                + "Activo: " + p.isActivo() + "<br>";
         Correo c = new Correo(correo_destino, asunto, mensaje);
         c.enviar();
     }
