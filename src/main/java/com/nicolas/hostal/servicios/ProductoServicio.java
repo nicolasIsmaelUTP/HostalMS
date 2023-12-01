@@ -3,12 +3,16 @@ package com.nicolas.hostal.servicios;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.util.Correo;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductoServicio {
 
     ProductoDAO productos;
+
+    String correo_destino = "Correo de destino";
 
     public ProductoServicio() {
         this.productos = MySQLDaoManager.getInstance().getProductoDAO();
@@ -17,14 +21,41 @@ public class ProductoServicio {
     // CRUD
     public void registrarProducto(Producto p) {
         productos.insertar(p);
+
+        String asunto = "Nuevo producto registrado: " + p.getNombre();
+        String mensaje = "Se ha registrado un nuevo producto: " + p.getNombre() + "\n"
+                + "Precio: " + p.getPrecio_unitario() + "\n"
+                + "Stock: " + p.getCantidad() + "\n"
+                + "Categoria: " + p.getCategoria() + "\n"
+                + "Activo: " + p.isActivo() + "\n";
+        Correo c = new Correo(correo_destino, asunto, mensaje);
+        c.enviar();
     }
 
     public void modificarProducto(Producto p) {
         productos.modificar(p);
+
+        String asunto = "Producto modificado: " + p.getNombre();
+        String mensaje = "Se ha modificado un producto: " + p.getNombre() + "\n"
+                + "Precio: " + p.getPrecio_unitario() + "\n"
+                + "Stock: " + p.getCantidad() + "\n"
+                + "Categoria: " + p.getCategoria() + "\n"
+                + "Activo: " + p.isActivo() + "\n";
+        Correo c = new Correo(correo_destino, asunto, mensaje);
+        c.enviar();
     }
 
     public void borrarProducto(Producto p) {
         productos.eliminar(p);
+
+        String asunto = "Producto eliminado: " + p.getNombre();
+        String mensaje = "Se ha eliminado un producto: " + p.getNombre() + "\n"
+                + "Precio: " + p.getPrecio_unitario() + "\n"
+                + "Stock: " + p.getCantidad() + "\n"
+                + "Categoria: " + p.getCategoria() + "\n"
+                + "Activo: " + p.isActivo() + "\n";
+        Correo c = new Correo(correo_destino, asunto, mensaje);
+        c.enviar();
     }
 
     public List<Producto> obtenerTodosProductos() {

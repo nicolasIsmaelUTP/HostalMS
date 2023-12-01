@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class Correo {
     private static final String correo_salida = "trendyco.es@gmail.com";
-    private static final String clave = "cvvm rnhr ikhr hrcl";
+    private static final String clave = "App password";
 
     private Properties props;
     private Session session;
@@ -36,7 +36,7 @@ public class Correo {
             mimeMessage.setFrom(new InternetAddress(correo_salida));
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(correo_destino));
             mimeMessage.setSubject(asunto);
-            mimeMessage.setText(correo_destino, "ISO-8859-1", "html");
+            mimeMessage.setText(mensaje, "ISO-8859-1", "html");
         } catch (AddressException e) {
         } catch (MessagingException e) {
         }
