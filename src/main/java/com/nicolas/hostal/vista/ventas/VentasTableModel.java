@@ -31,7 +31,7 @@ public class VentasTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 1;
     }
 
     @Override
