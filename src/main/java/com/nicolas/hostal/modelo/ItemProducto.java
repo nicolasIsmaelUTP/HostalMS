@@ -63,4 +63,8 @@ public class ItemProducto implements Serializable {
         this.producto = producto;
     }
     
+    // Total
+    public double getTotal(){
+        return this.cantidad * this.precio_unitario;
+    }
 }

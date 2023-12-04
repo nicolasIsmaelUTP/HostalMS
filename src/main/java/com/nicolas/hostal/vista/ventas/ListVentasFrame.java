@@ -1,11 +1,17 @@
 package com.nicolas.hostal.vista.ventas;
 
+import javax.swing.JOptionPane;
+
+import com.nicolas.hostal.modelo.ItemProducto;
+import com.nicolas.hostal.modelo.ItemProducto;
+import com.nicolas.hostal.servicios.ItemProductoServicio;
 import com.nicolas.hostal.servicios.VentaServicio;
 import com.nicolas.hostal.vista.inventario.ProductosComboModel;
 
 public class ListVentasFrame extends javax.swing.JFrame {
 
-    private VentaServicio servicio;
+    private VentaServicio ventaServicio;
+    private ItemProductoServicio itemServicio;
 
     private VentasTableModel model;
 
@@ -14,11 +20,13 @@ public class ListVentasFrame extends javax.swing.JFrame {
         
         setTitle("Registrar venta");
 
-        this.servicio = new VentaServicio();
+        this.ventaServicio = new VentaServicio();
+        this.itemServicio = new ItemProductoServicio();
+
         this.model = new VentasTableModel();
 
         // Copiar y pegar
-        //obtenerDatos();
+        obtenerDatos();
         this.tabla.setModel(model);
         this.detalle.setEditable(false);
         this.tabla.getSelectionModel().addListSelectionListener(e -> {
@@ -28,9 +36,18 @@ public class ListVentasFrame extends javax.swing.JFrame {
         //
 
         // ComboModel
-        // Luego de haberse instanciado inicialmente para el detalle
-        // se setea el modelo con el ServManager
         this.detalle.setModel(new ProductosComboModel());
+    }
+
+    private void obtenerDatos() {
+        estado.setText("Actualizando modelo...");
+        model.updateModel();
+        estado.setText(model.getRowCount() + " entradas visibles");
+    }
+
+    private ItemProducto getItemSeleccionado() {
+        int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
+        return itemServicio.obtenerItemProducto(id);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,6 +78,11 @@ public class ListVentasFrame extends javax.swing.JFrame {
         btn_nuevo.setFocusable(false);
         btn_nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_nuevo);
         jToolBar1.add(jSeparator1);
 
@@ -68,6 +90,11 @@ public class ListVentasFrame extends javax.swing.JFrame {
         btn_borrar.setFocusable(false);
         btn_borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_borrar);
         jToolBar1.add(jSeparator2);
 
@@ -75,6 +102,11 @@ public class ListVentasFrame extends javax.swing.JFrame {
         btn_registrar.setFocusable(false);
         btn_registrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_registrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_registrar);
         jToolBar1.add(jSeparator3);
 
@@ -87,6 +119,11 @@ public class ListVentasFrame extends javax.swing.JFrame {
         btn_imprimir.setFocusable(false);
         btn_imprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_imprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imprimirActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_imprimir);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
@@ -113,6 +150,50 @@ public class ListVentasFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
+        detalle.setItem(null);
+        detalle.loadData();
+        detalle.setEditable(true);
+        btn_registrar.setEnabled(true);
+    }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
+        if (JOptionPane.showConfirmDialog(
+                rootPane,
+                "¿Seguro que quieres eliminar este item de venta?",
+                "Borrar item de venta",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            ItemProducto item = getItemSeleccionado();
+            itemServicio.eliminarItemProducto(item);
+
+            obtenerDatos();
+            model.fireTableDataChanged();
+        }
+    }//GEN-LAST:event_btn_borrarActionPerformed
+
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        detalle.saveData();
+        ItemProducto item = detalle.getItem();
+        if (item.getId() == 0) {
+            itemServicio.registrarItemProducto(item);
+        }
+        // Limpiar detalle
+        detalle.setItem(null);
+        detalle.setEditable(false);
+        detalle.loadData();
+        // Opciones
+        btn_registrar.setEnabled(false);
+        // Tabla
+        tabla.clearSelection();
+        obtenerDatos();
+        model.fireTableDataChanged();
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
+        // imprimir
+    }//GEN-LAST:event_btn_imprimirActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -126,9 +207,9 @@ public class ListVentasFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JButton btn_registrar;
+    private com.nicolas.hostal.vista.ventas.DetalleVentaPanel detalle;
     private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel2;
-    private com.nicolas.hostal.vista.ventas.DetalleVentaPanel detalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;

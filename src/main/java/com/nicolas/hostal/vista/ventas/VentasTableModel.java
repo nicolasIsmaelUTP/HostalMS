@@ -1,45 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nicolas.hostal.vista.ventas;
 
-import com.nicolas.hostal.modelo.Venta;
+import com.nicolas.hostal.modelo.ItemProducto;
 import java.util.List;  
 import java.util.ArrayList;
-import com.nicolas.hostal.servicios.ServManager;
-import com.nicolas.hostal.servicios.VentaServicio;
+import com.nicolas.hostal.servicios.ItemProductoServicio;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * author NICOLAS
- */
+
 public class VentasTableModel extends AbstractTableModel {
 
-    private VentaServicio servicio;
+    private ItemProductoServicio servicio;
 
-    private List<Venta> datos = new ArrayList<>();
+    private List<ItemProducto> datos = new ArrayList<>();
 
     public VentasTableModel() {
-        this.servicio = new VentaServicio();
+        this.servicio = new ItemProductoServicio();
     }
 
     public void updateModel() {
-        datos = servicio.obtenerTodasVentas();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return 1;
+        datos = servicio.obtenerTodosItemsProducto();
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0: return "ID";
+            case 1: return "Cantidad";
+            case 2: return "Producto";
+            case 3: return "Precio Unitario";
+            case 4: return "Total";
             default: return "[no]";
         }
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 5;
     }
     
     @Override
@@ -49,9 +45,13 @@ public class VentasTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Venta preguntado = datos.get(rowIndex);
+        ItemProducto item = datos.get(rowIndex);
         switch (columnIndex) {
-            case 0: return preguntado.getId();
+            case 0: return item.getId();
+            case 1: return item.getCantidad();
+            case 2: return item.getProducto().getNombre();
+            case 3: return item.getPrecio_unitario();
+            case 4: return item.getTotal();
             default: return "";
         }
     }
