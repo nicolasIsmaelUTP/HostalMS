@@ -17,4 +17,8 @@ public interface DAOManager {
     UsuarioDAO getUsuarioDAO();
     
     RolDAO getRolDAO();
+    
+    VentaDAO getVentaDAO();
+    
+    ItemProductoDAO getItemProductoDAO();
 }

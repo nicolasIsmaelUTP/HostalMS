@@ -3,12 +3,14 @@ package com.nicolas.hostal.dao.mysql;
 import com.nicolas.hostal.dao.ClienteDAO;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.HabitacionDAO;
+import com.nicolas.hostal.dao.ItemProductoDAO;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.dao.RolDAO;
 import com.nicolas.hostal.dao.TipoHabitacionDAO;
 import com.nicolas.hostal.dao.UsuarioDAO;
+import com.nicolas.hostal.dao.VentaDAO;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -29,6 +31,8 @@ public class MySQLDaoManager implements DAOManager {
     private MetodoPagoDAO metodospago = null;
     private UsuarioDAO usuarios = null;
     private RolDAO roles = null;
+    private VentaDAO ventas = null;
+    private ItemProductoDAO itemsproducto = null;
 
     // Constructor privado
     public MySQLDaoManager() {
@@ -105,6 +109,22 @@ public class MySQLDaoManager implements DAOManager {
             roles = new MySQLRolDAO(emf);
         }
         return roles;
+    }
+
+    @Override
+    public VentaDAO getVentaDAO() {
+        if (ventas == null ){
+            ventas = new MySQLVentaDAO(emf);
+        }
+        return ventas;
+    }
+
+    @Override
+    public ItemProductoDAO getItemProductoDAO() {
+        if (itemsproducto == null){
+            itemsproducto = new MySQLItemProductoDAO(emf);
+        }
+        return itemsproducto;
     }
 
 }

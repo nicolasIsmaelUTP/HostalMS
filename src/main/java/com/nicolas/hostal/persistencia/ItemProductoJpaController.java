@@ -4,7 +4,7 @@
  */
 package com.nicolas.hostal.persistencia;
 
-import com.nicolas.hostal.modelo.Producto;
+import com.nicolas.hostal.modelo.ItemProducto;
 import com.nicolas.hostal.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -19,9 +19,9 @@ import javax.persistence.criteria.Root;
  *
  * @author NICOLAS
  */
-public class ProductoJpaController implements Serializable {
+public class ItemProductoJpaController implements Serializable {
 
-    public ProductoJpaController(EntityManagerFactory emf) {
+    public ItemProductoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -30,12 +30,12 @@ public class ProductoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Producto producto) {
+    public void create(ItemProducto itemProducto) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(producto);
+            em.persist(itemProducto);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -44,19 +44,19 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void edit(Producto producto) throws NonexistentEntityException, Exception {
+    public void edit(ItemProducto itemProducto) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            producto = em.merge(producto);
+            itemProducto = em.merge(itemProducto);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = producto.getId();
-                if (findProducto(id) == null) {
-                    throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
+                int id = itemProducto.getId();
+                if (findItemProducto(id) == null) {
+                    throw new NonexistentEntityException("The itemProducto with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -72,14 +72,14 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Producto producto;
+            ItemProducto itemProducto;
             try {
-                producto = em.getReference(Producto.class, id);
-                producto.getId();
+                itemProducto = em.getReference(ItemProducto.class, id);
+                itemProducto.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The itemProducto with id " + id + " no longer exists.", enfe);
             }
-            em.remove(producto);
+            em.remove(itemProducto);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -88,19 +88,19 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public List<Producto> findProductoEntities() {
-        return findProductoEntities(true, -1, -1);
+    public List<ItemProducto> findItemProductoEntities() {
+        return findItemProductoEntities(true, -1, -1);
     }
 
-    public List<Producto> findProductoEntities(int maxResults, int firstResult) {
-        return findProductoEntities(false, maxResults, firstResult);
+    public List<ItemProducto> findItemProductoEntities(int maxResults, int firstResult) {
+        return findItemProductoEntities(false, maxResults, firstResult);
     }
 
-    private List<Producto> findProductoEntities(boolean all, int maxResults, int firstResult) {
+    private List<ItemProducto> findItemProductoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Producto.class));
+            cq.select(cq.from(ItemProducto.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -112,20 +112,20 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public Producto findProducto(int id) {
+    public ItemProducto findItemProducto(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Producto.class, id);
+            return em.find(ItemProducto.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getProductoCount() {
+    public int getItemProductoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Producto> rt = cq.from(Producto.class);
+            Root<ItemProducto> rt = cq.from(ItemProducto.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
