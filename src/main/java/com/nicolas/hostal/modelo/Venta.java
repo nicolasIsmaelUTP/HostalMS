@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +20,8 @@ public class Venta implements Serializable {
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_venta;
+    @ManyToOne
+    private Cliente cliente;
     @OneToMany(mappedBy = "venta")
     private List<ItemProducto> items;
 
@@ -52,6 +55,14 @@ public class Venta implements Serializable {
 
     public void setItems(List<ItemProducto> items) {
         this.items = items;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente c) {
+        this.cliente = c;
     }
     
     // Metodos
