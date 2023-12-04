@@ -17,7 +17,7 @@ public class DetalleEntradaProductoPanel extends javax.swing.JPanel {
     // Se necesita un constructor vacio para enlazarlo con el JFrame Form
     public DetalleEntradaProductoPanel() {
         initComponents();
-        model = new ProductosComboModel(null);
+        model = new ProductosComboModel();
     }
 
     public ProductosComboModel getModel() {

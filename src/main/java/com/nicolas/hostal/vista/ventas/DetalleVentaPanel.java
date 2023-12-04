@@ -12,7 +12,7 @@ public class DetalleVentaPanel extends javax.swing.JPanel {
 
     public DetalleVentaPanel() {
         initComponents();
-        model = new ProductosComboModel(null);
+        model = new ProductosComboModel();
     }
 
     public ProductosComboModel getModel() {

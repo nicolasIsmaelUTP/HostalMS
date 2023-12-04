@@ -33,9 +33,7 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         //
 
         // ComboModel
-        // Luego de haberse instanciado inicialmente para el detalle
-        // se setea el modelo con el ServManager
-        this.detalle.setModel(new ProductosComboModel(manager));
+        this.detalle.setModel(new ProductosComboModel());
     }
 
     private void obtenerDatos() {

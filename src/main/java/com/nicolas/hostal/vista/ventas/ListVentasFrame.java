@@ -1,9 +1,36 @@
 package com.nicolas.hostal.vista.ventas;
 
+import com.nicolas.hostal.servicios.VentaServicio;
+import com.nicolas.hostal.vista.inventario.ProductosComboModel;
+
 public class ListVentasFrame extends javax.swing.JFrame {
+
+    private VentaServicio servicio;
+
+    private VentasTableModel model;
 
     public ListVentasFrame() {
         initComponents();
+        
+        setTitle("Registrar venta");
+
+        this.servicio = new VentaServicio();
+        this.model = new VentasTableModel();
+
+        // Copiar y pegar
+        //obtenerDatos();
+        this.tabla.setModel(model);
+        this.detalle.setEditable(false);
+        this.tabla.getSelectionModel().addListSelectionListener(e -> {
+            boolean seleccionValida = (tabla.getSelectedRow() != -1);
+            btn_borrar.setEnabled(seleccionValida);
+        });
+        //
+
+        // ComboModel
+        // Luego de haberse instanciado inicialmente para el detalle
+        // se setea el modelo con el ServManager
+        this.detalle.setModel(new ProductosComboModel());
     }
 
     @SuppressWarnings("unchecked")
@@ -99,9 +126,9 @@ public class ListVentasFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JButton btn_registrar;
-    private com.nicolas.hostal.vista.ventas.DetalleVentaPanel detalle;
     private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel2;
+    private com.nicolas.hostal.vista.ventas.DetalleVentaPanel detalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
