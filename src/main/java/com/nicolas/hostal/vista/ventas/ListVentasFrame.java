@@ -226,13 +226,13 @@ public class ListVentasFrame extends javax.swing.JFrame {
                 venta.agregarItem(i);
             }
             
-            ventaServicio.registrarVenta(this.venta);
-            itemServicio.eliminarItemsProductoTemporales();
-
             // Generar PDF
             Pdf pdf = new Pdf();
             pdf.exportarAPdf(boleta());
-           
+            
+            ventaServicio.registrarVenta(this.venta);
+            itemServicio.eliminarItemsProductoTemporales();
+
             String mensaje = "Venta registrada con éxito para el cliente: " + c.getApellidoPaterno() + " " + c.getApellidoMaterno() + ", " + c.getPrimerNombre() + " " + c.getSegundoNombre();
             JOptionPane.showMessageDialog(null, mensaje);
             dispose();
@@ -248,9 +248,9 @@ public class ListVentasFrame extends javax.swing.JFrame {
         boleta += "--------------------------------\n";
         boleta += "Detalle de venta\n";
         boleta += "--------------------------------\n";
-        boleta += "Producto\tCantidad\tTotal\n";
+        boleta += "Producto  -  Cantidad  -  Total\n";
         for (ItemProducto item: itemServicio.obtenerItemsProductoTemporales()) {
-            boleta += item.getProducto().getNombre() + "\t" + item.getCantidad() + "\t" + item.getTotal() + "\n";
+            boleta += item.getProducto().getNombre() + "  -  " + item.getCantidad() + "  -  " + item.getTotal() + "\n";
         }
         boleta += "--------------------------------\n";
         boleta += "Total: " + totalVenta() + "\n";
