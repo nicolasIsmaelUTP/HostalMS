@@ -10,6 +10,7 @@ import com.nicolas.hostal.modelo.Venta;
 import com.nicolas.hostal.servicios.ClienteServicio;
 import com.nicolas.hostal.servicios.ItemProductoServicio;
 import com.nicolas.hostal.servicios.VentaServicio;
+import com.nicolas.hostal.util.Pdf;
 import com.nicolas.hostal.vista.inventario.ProductosComboModel;
 
 public class ListVentasFrame extends javax.swing.JFrame {
@@ -227,11 +228,34 @@ public class ListVentasFrame extends javax.swing.JFrame {
             
             ventaServicio.registrarVenta(this.venta);
             itemServicio.eliminarItemsProductoTemporales();
+
+            // Generar PDF
+            Pdf pdf = new Pdf();
+            pdf.exportarAPdf(boleta());
            
             String mensaje = "Venta registrada con éxito para el cliente: " + c.getApellidoPaterno() + " " + c.getApellidoMaterno() + ", " + c.getPrimerNombre() + " " + c.getSegundoNombre();
             JOptionPane.showMessageDialog(null, mensaje);
             dispose();
         }
+    }
+
+    public String boleta() {
+        String boleta = "";
+        boleta += "Hostal Los Delfines\n";
+        boleta += "Ruc: 76.123.456-7\n";
+        boleta += "Direccion: Av. Siempre Viva 123\n";
+        boleta += "Fecha: " + new Date() + "\n";
+        boleta += "--------------------------------\n";
+        boleta += "Detalle de venta\n";
+        boleta += "--------------------------------\n";
+        boleta += "Producto\tCantidad\tTotal\n";
+        for (ItemProducto item: itemServicio.obtenerItemsProductoTemporales()) {
+            boleta += item.getProducto().getNombre() + "\t" + item.getCantidad() + "\t" + item.getTotal() + "\n";
+        }
+        boleta += "--------------------------------\n";
+        boleta += "Total: " + totalVenta() + "\n";
+        boleta += "--------------------------------\n";
+        return boleta;
     }
 
     public static void main(String args[]) {
