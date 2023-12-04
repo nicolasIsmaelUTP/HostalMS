@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class VentasTableModel extends AbstractTableModel {
 
-    private ItemProductoServicio servicio;
+    private final ItemProductoServicio servicio;
 
     private List<ItemProducto> datos = new ArrayList<>();
 

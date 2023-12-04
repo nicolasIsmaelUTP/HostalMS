@@ -14,14 +14,14 @@ import com.nicolas.hostal.vista.inventario.ProductosComboModel;
 
 public class ListVentasFrame extends javax.swing.JFrame {
 
-    private VentaServicio ventaServicio;
-    private ItemProductoServicio itemServicio;
-    private ClienteServicio clienteServicio;
+    private final VentaServicio ventaServicio;
+    private final ItemProductoServicio itemServicio;
+    private final ClienteServicio clienteServicio;
 
-    private VentasTableModel model;
+    private final VentasTableModel model;
 
     // Instancia de venta
-    private Venta venta = new Venta();
+    private final Venta venta = new Venta();
 
     public ListVentasFrame() {
         initComponents();
