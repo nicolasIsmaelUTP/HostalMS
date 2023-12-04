@@ -22,7 +22,7 @@ public class VentasTableModel extends AbstractTableModel {
     private List<Venta> datos = new ArrayList<>();
 
     public VentasTableModel() {
-        this.servicio = new VentaServicio()
+        this.servicio = new VentaServicio();
     }
 
     public void updateModel() {
