@@ -43,7 +43,7 @@ public class ServManager {
 
     public ClienteServicio getClienteServicio() {
         if (clientes == null) {
-            clientes = new ClienteServicio(dao);
+            clientes = new ClienteServicio();
         }
         return clientes;
     }

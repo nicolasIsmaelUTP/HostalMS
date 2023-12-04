@@ -1,13 +1,16 @@
 package com.nicolas.hostal.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -22,15 +25,15 @@ public class Venta implements Serializable {
     private Date fecha_venta;
     @ManyToOne
     private Cliente cliente;
-    @OneToMany(mappedBy = "venta")
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
     private List<ItemProducto> items;
 
     public Venta() {
+        this.items = new ArrayList<>();
     }
 
     public Venta(List<ItemProducto> items) {
         this.items = items;
-        this.fecha_venta = new Date();
     }
 
     public int getId() {
@@ -68,11 +71,16 @@ public class Venta implements Serializable {
     // Metodos
     public ItemProducto agregarItem(ItemProducto item) {
         this.items.add(item);
+        item.setVenta(this);
         return item;
+    }
+    
+    public void vaciar(){
+        this.items.clear();
     }
 
-    public ItemProducto quitarItem(ItemProducto item) {
-        this.items.remove(item);
-        return item;
-    }
+    // public ItemProducto quitarItem(ItemProducto item) {
+    //     this.items.remove(item);
+    //     return item;
+    // }
 }

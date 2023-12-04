@@ -18,7 +18,7 @@ public class VentasTableModel extends AbstractTableModel {
     }
 
     public void updateModel() {
-        datos = servicio.obtenerTodosItemsProducto();
+        datos = servicio.obtenerItemsProductoTemporales();
     }
 
     @Override

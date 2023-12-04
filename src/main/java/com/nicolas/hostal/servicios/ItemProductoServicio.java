@@ -1,5 +1,6 @@
 package com.nicolas.hostal.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nicolas.hostal.dao.ItemProductoDAO;
@@ -33,5 +34,26 @@ public class ItemProductoServicio {
 
     public ItemProducto obtenerItemProducto(int id){
         return items.obtener(id);
+    }
+
+    // Obtener registros temporales
+    public List<ItemProducto> obtenerItemsProductoTemporales(){
+        List<ItemProducto> items = new ArrayList<>();
+        for (ItemProducto i : obtenerTodosItemsProducto()) {
+            if (i.getVenta() == null) {
+                items.add(i);
+            }
+        }
+        return items;
+    }
+
+    // Eliminar registros temporales
+    public void eliminarItemsProductoTemporales(){
+        List<ItemProducto> items = obtenerTodosItemsProducto();
+        for (ItemProducto i : items) {
+            if (i.getVenta() == null) {
+                eliminarItemProducto(i);
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.nicolas.hostal.servicios;
 
 import com.nicolas.hostal.dao.ClienteDAO;
-import com.nicolas.hostal.dao.DAOManager;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Cliente;
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class ClienteServicio {
     
     ClienteDAO clientes;
     
-    public ClienteServicio(DAOManager manager){
-        this.clientes = manager.getClienteDAO();
+    public ClienteServicio(){
+        this.clientes = MySQLDaoManager.getInstance().getClienteDAO();
     }
     
     // CRUD
