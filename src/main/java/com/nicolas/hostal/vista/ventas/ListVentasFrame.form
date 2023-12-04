@@ -35,7 +35,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btn_nuevo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -45,7 +45,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btn_borrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -55,7 +55,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btn_registrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -70,11 +70,11 @@
             <Property name="text" type="java.lang.String" value="DNI cliente:  "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="tf_dni">
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator4">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="btn_imprimir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -96,7 +96,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tabla">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -110,7 +110,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="estado">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
@@ -120,7 +120,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="com.nicolas.hostal.vista.ventas.DetalleVentaPanel" name="detalleVentaPanel1">
+    <Component class="com.nicolas.hostal.vista.ventas.DetalleVentaPanel" name="detalle">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="After"/>
