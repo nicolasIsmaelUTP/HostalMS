@@ -19,6 +19,9 @@ public class ItemProducto implements Serializable {
     @ManyToOne
     private Producto producto;
 
+    @ManyToOne
+    private Venta venta;
+
     public ItemProducto() {
     }
 

@@ -19,7 +19,7 @@ public class Venta implements Serializable {
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_venta;
-    @OneToMany
+    @OneToMany(mappedBy = "venta")
     private List<ItemProducto> items;
 
     public Venta() {
