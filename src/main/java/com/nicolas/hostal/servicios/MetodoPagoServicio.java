@@ -1,15 +1,15 @@
 package com.nicolas.hostal.servicios;
 
-import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.MetodoPago;
 import java.util.List;
 
 public class MetodoPagoServicio {
     MetodoPagoDAO metodospago;
     
-    public MetodoPagoServicio(DAOManager manager){
-        this.metodospago = manager.getMetodoPagoDAO();
+    public MetodoPagoServicio(){
+        this.metodospago = MySQLDaoManager.getInstance().getMetodoPagoDAO();
     }
     
     // CRUD

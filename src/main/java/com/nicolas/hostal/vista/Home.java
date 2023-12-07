@@ -195,8 +195,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_i_gestionar_usuariosActionPerformed
 
     private void i_gestionar_metodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_metodosActionPerformed
-        // ListMetodosPagoFrame listMetodosPagoFrame = new ListMetodosPagoFrame();
-        // listMetodosPagoFrame.setVisible(true);
+        ListMetodosPagoFrame listMetodosPagoFrame = new ListMetodosPagoFrame();
+        listMetodosPagoFrame.setVisible(true);
     }//GEN-LAST:event_i_gestionar_metodosActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

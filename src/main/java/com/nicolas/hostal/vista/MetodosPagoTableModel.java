@@ -2,19 +2,18 @@ package com.nicolas.hostal.vista;
 
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.servicios.MetodoPagoServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class MetodosPagoTableModel extends AbstractTableModel {
 
-    private MetodoPagoServicio servicio;
+    private final MetodoPagoServicio servicio;
 
     private List<MetodoPago> datos = new ArrayList<>();
     
-    public MetodosPagoTableModel(ServManager manager) {
-        this.servicio = manager.getMetodoPagoServicio();
+    public MetodosPagoTableModel() {
+        this.servicio = new MetodoPagoServicio();
     }
 
     public void updateModel() {

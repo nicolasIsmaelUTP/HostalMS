@@ -3,7 +3,6 @@ package com.nicolas.hostal.vista.clientes;
 import com.nicolas.hostal.modelo.Cliente;
 import javax.swing.table.AbstractTableModel;
 import com.nicolas.hostal.servicios.ClienteServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import java.util.ArrayList;
 import java.util.List;
 

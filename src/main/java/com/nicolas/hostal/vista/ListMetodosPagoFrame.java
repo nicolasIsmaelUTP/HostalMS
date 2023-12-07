@@ -2,21 +2,24 @@ package com.nicolas.hostal.vista;
 
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.servicios.MetodoPagoServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListMetodosPagoFrame extends javax.swing.JFrame {
 
-    private MetodoPagoServicio servicio;
+    private final MetodoPagoServicio servicio;
     
-    private MetodosPagoTableModel model;
+    private final MetodosPagoTableModel model;
     
-    public ListMetodosPagoFrame(ServManager manager) {
+    public ListMetodosPagoFrame() {
         initComponents();
         setTitle("Gestionar metodos de pago");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(400, 200);
+        setLocationRelativeTo(null);
         
-        this.servicio = manager.getMetodoPagoServicio();
-        this.model = new MetodosPagoTableModel(manager);
+        this.servicio = new MetodoPagoServicio();
+        this.model = new MetodosPagoTableModel();
         obtenerDatos();
         this.tabla.setModel(model);
         
@@ -183,12 +186,6 @@ public class ListMetodosPagoFrame extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    public static void main(String args[]) {
-        ServManager manager = new ServManager();
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListMetodosPagoFrame(manager).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;
