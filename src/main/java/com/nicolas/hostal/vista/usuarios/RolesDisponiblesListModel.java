@@ -3,7 +3,6 @@ package com.nicolas.hostal.vista.usuarios;
 import com.nicolas.hostal.modelo.Rol;
 import com.nicolas.hostal.modelo.Usuario;
 import com.nicolas.hostal.servicios.RolServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import com.nicolas.hostal.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +18,15 @@ public class RolesDisponiblesListModel extends DefaultListModel<Rol> {
     }
 
     // Servicios
-    private RolServicio roles;
-    private UsuarioServicio usuarios;
+    private final RolServicio roles;
+    private final UsuarioServicio usuarios;
 
     // Lista
     private List<Rol> lista;
 
-    public RolesDisponiblesListModel(ServManager manager) {
-        if (manager != null) {
-            this.roles = manager.getRolServicio();
-            this.usuarios = manager.getUsuarioServicio();
-        }
+    public RolesDisponiblesListModel() {
+        this.roles = new RolServicio();
+        this.usuarios = new UsuarioServicio();
         this.lista = new ArrayList<>();
     }
 

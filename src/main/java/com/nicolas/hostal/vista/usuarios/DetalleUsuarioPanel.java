@@ -2,7 +2,6 @@ package com.nicolas.hostal.vista.usuarios;
 
 import com.nicolas.hostal.modelo.Rol;
 import com.nicolas.hostal.modelo.Usuario;
-import com.nicolas.hostal.servicios.ServManager;
 import com.nicolas.hostal.servicios.UsuarioServicio;
 
 public class DetalleUsuarioPanel extends javax.swing.JPanel {
@@ -18,11 +17,11 @@ public class DetalleUsuarioPanel extends javax.swing.JPanel {
 
     public DetalleUsuarioPanel() {
         initComponents();
-        this.modeloDisp = new RolesDisponiblesListModel(null);
+        this.modeloDisp = new RolesDisponiblesListModel();
     }
 
-    public void setServiceManager(ServManager manager){
-        this.usuarios = manager.getUsuarioServicio();
+    public void setServiceManager(){
+        this.usuarios = new UsuarioServicio();
     }
 
     public void setModeloDisp(RolesDisponiblesListModel modeloDisp) {

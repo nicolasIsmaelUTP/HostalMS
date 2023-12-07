@@ -1,15 +1,15 @@
 package com.nicolas.hostal.servicios;
 
-import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.RolDAO;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Rol;
 import java.util.List;
 
 public class RolServicio {
     RolDAO roles;
     
-    public RolServicio(DAOManager manager){
-        this.roles = manager.getRolDAO();
+    public RolServicio(){
+        this.roles = MySQLDaoManager.getInstance().getRolDAO();
     }
     
     // CRUD

@@ -6,6 +6,7 @@ import com.nicolas.hostal.vista.habitaciones.ListTiposHabitacionFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 import com.nicolas.hostal.vista.inventario.excel_inventario;
+import com.nicolas.hostal.vista.usuarios.ListUsuariosFrame;
 import com.nicolas.hostal.vista.ventas.VenderFrame;
 
 public class Home extends javax.swing.JFrame {
@@ -36,6 +37,9 @@ public class Home extends javax.swing.JFrame {
         i_exportar_inventario = new javax.swing.JMenuItem();
         menu_ventas = new javax.swing.JMenu();
         i_realizar_venta = new javax.swing.JMenuItem();
+        menu_admin = new javax.swing.JMenu();
+        i_gestionar_usuarios = new javax.swing.JMenuItem();
+        i_gestionar_metodos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +118,26 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_ventas);
 
+        menu_admin.setText("Admin");
+
+        i_gestionar_usuarios.setText("Gestionar usuarios");
+        i_gestionar_usuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_gestionar_usuariosActionPerformed(evt);
+            }
+        });
+        menu_admin.add(i_gestionar_usuarios);
+
+        i_gestionar_metodos.setText("Gestionar métodos de pago");
+        i_gestionar_metodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_gestionar_metodosActionPerformed(evt);
+            }
+        });
+        menu_admin.add(i_gestionar_metodos);
+
+        jMenuBar1.add(menu_admin);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,16 +188,29 @@ public class Home extends javax.swing.JFrame {
         VenderFrame venderFrame = new VenderFrame();
         venderFrame.setVisible(true);
     }//GEN-LAST:event_i_realizar_ventaActionPerformed
+
+    private void i_gestionar_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_usuariosActionPerformed
+        ListUsuariosFrame listUsuariosFrame = new ListUsuariosFrame();
+        listUsuariosFrame.setVisible(true);
+    }//GEN-LAST:event_i_gestionar_usuariosActionPerformed
+
+    private void i_gestionar_metodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_metodosActionPerformed
+        // ListMetodosPagoFrame listMetodosPagoFrame = new ListMetodosPagoFrame();
+        // listMetodosPagoFrame.setVisible(true);
+    }//GEN-LAST:event_i_gestionar_metodosActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem i_exportar_inventario;
     private javax.swing.JMenuItem i_gestionar_clientes;
     private javax.swing.JMenuItem i_gestionar_habitaciones;
+    private javax.swing.JMenuItem i_gestionar_metodos;
     private javax.swing.JMenuItem i_gestionar_productos;
     private javax.swing.JMenuItem i_gestionar_tipos;
+    private javax.swing.JMenuItem i_gestionar_usuarios;
     private javax.swing.JMenuItem i_realizar_venta;
     private javax.swing.JMenuItem i_registrar_entradas;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menu_admin;
     private javax.swing.JMenu menu_habitaciones;
     private javax.swing.JMenu menu_inicio;
     private javax.swing.JMenu menu_inventario;

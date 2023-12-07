@@ -1,7 +1,6 @@
 package com.nicolas.hostal.vista.usuarios;
 
 import com.nicolas.hostal.modelo.Usuario;
-import com.nicolas.hostal.servicios.ServManager;
 import com.nicolas.hostal.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +8,12 @@ import javax.swing.table.AbstractTableModel;
 
 public class UsuariosTableModel extends AbstractTableModel{
     
-    private UsuarioServicio servicio;
+    private final UsuarioServicio servicio;
 
     private List<Usuario> datos = new ArrayList<>();
     
-    public UsuariosTableModel(ServManager manager) {
-        this.servicio = manager.getUsuarioServicio();
+    public UsuariosTableModel() {
+        this.servicio = new UsuarioServicio();
     }
 
     public void updateModel() {

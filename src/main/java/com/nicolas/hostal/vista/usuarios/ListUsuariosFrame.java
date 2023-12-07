@@ -1,26 +1,29 @@
 package com.nicolas.hostal.vista.usuarios;
 
 import com.nicolas.hostal.modelo.Usuario;
-import com.nicolas.hostal.servicios.ServManager;
 import com.nicolas.hostal.servicios.UsuarioServicio;
 import javax.swing.JOptionPane;
 
 public class ListUsuariosFrame extends javax.swing.JFrame {
 
-    private UsuarioServicio servicio;
+    private final UsuarioServicio servicio;
     
-    private UsuariosTableModel model;
+    private final UsuariosTableModel model;
     
-    public ListUsuariosFrame(ServManager manager) {
+    public ListUsuariosFrame() {
         initComponents();
         setTitle("Gestionar usuarios del sistema");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
         
-        this.servicio = manager.getUsuarioServicio();
-        this.model = new UsuariosTableModel(manager);
+        this.servicio = new UsuarioServicio();
+        this.model = new UsuariosTableModel();
         obtenerDatos();
         this.tabla.setModel(model);
         
-        this.detalle.setServiceManager(manager);
+        this.detalle.setServiceManager();
         this.detalle.setEditable(false);
         
         this.tabla.getSelectionModel().addListSelectionListener(e -> {
@@ -30,8 +33,8 @@ public class ListUsuariosFrame extends javax.swing.JFrame {
         });
         
         // Modelos Lista
-        this.detalle.setModeloDisp(new RolesDisponiblesListModel(manager));
-        this.detalle.setModeloAsig(new RolesAsignadosListModel(manager));
+        this.detalle.setModeloDisp(new RolesDisponiblesListModel());
+        this.detalle.setModeloAsig(new RolesAsignadosListModel());
     }
 
     final void obtenerDatos(){
@@ -188,12 +191,6 @@ public class ListUsuariosFrame extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    public static void main(String args[]) {
-        ServManager manager = new ServManager();
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListUsuariosFrame(manager).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;
