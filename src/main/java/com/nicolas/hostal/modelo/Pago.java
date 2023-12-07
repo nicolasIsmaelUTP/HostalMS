@@ -16,9 +16,6 @@ public class Pago {
     private Date fecha;
 
     public Pago() {
-        this.id = id;
-        this.monto = monto;
-        this.fecha = fecha;
     }
 
     public int getId() {

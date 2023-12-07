@@ -1,6 +1,5 @@
 package com.nicolas.hostal.servicios;
 
-import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;

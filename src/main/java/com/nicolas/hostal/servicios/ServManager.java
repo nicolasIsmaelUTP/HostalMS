@@ -29,7 +29,7 @@ public class ServManager {
 
     public ProductoEntranteServicio getProductoEntranteServicio() {
         if (entrantes == null) {
-            entrantes = new ProductoEntranteServicio(dao);
+            entrantes = new ProductoEntranteServicio();
         }
         return entrantes;
     }

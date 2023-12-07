@@ -17,12 +17,6 @@ public class Item {
   private double descuento;
 
     public Item() {
-        this.id = id;
-        this.cantidad = cantidad;
-        this.unidadMedida = unidadMedida;
-        this.descripcion = descripcion;
-        this.valorUnitario = valorUnitario;
-        this.descuento = descuento;
     }
 
     public int getId() {

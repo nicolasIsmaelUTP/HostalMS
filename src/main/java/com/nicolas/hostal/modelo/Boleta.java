@@ -17,10 +17,6 @@ public class Boleta {
     private String observacion;
 
     public Boleta() {
-        this.codigo = codigo;
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaEmision = fechaEmision;
-        this.observacion = observacion;
     }
 
     public String getCodigo() {
