@@ -13,7 +13,7 @@ import com.nicolas.hostal.servicios.VentaServicio;
 import com.nicolas.hostal.util.Pdf;
 import com.nicolas.hostal.vista.inventario.ProductosComboModel;
 
-public class ListVentasFrame extends javax.swing.JFrame {
+public class VenderFrame extends javax.swing.JFrame {
 
     private final VentaServicio ventaServicio;
     private final ItemProductoServicio itemServicio;
@@ -24,10 +24,13 @@ public class ListVentasFrame extends javax.swing.JFrame {
     // Instancia de venta
     private final Venta venta = new Venta();
 
-    public ListVentasFrame() {
+    public VenderFrame() {
         initComponents();
-
         setTitle("Registrar venta");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
 
         this.ventaServicio = new VentaServicio();
         this.itemServicio = new ItemProductoServicio();
@@ -57,7 +60,7 @@ public class ListVentasFrame extends javax.swing.JFrame {
 
     private double totalVenta() {
         double total = 0;
-        for (ItemProducto item: itemServicio.obtenerItemsProductoTemporales()) {
+        for (ItemProducto item : itemServicio.obtenerItemsProductoTemporales()) {
             total += item.getTotal();
         }
         return total;
@@ -70,7 +73,8 @@ public class ListVentasFrame extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
@@ -78,7 +82,7 @@ public class ListVentasFrame extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btn_borrar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        btn_registrar = new javax.swing.JButton();
+        btn_agregar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jLabel2 = new javax.swing.JLabel();
         tf_dni = new javax.swing.JTextField();
@@ -106,6 +110,7 @@ public class ListVentasFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator1);
 
         btn_borrar.setText("Borrar");
+        btn_borrar.setEnabled(false);
         btn_borrar.setFocusable(false);
         btn_borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -117,16 +122,17 @@ public class ListVentasFrame extends javax.swing.JFrame {
         jToolBar1.add(btn_borrar);
         jToolBar1.add(jSeparator2);
 
-        btn_registrar.setText("Registrar");
-        btn_registrar.setFocusable(false);
-        btn_registrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_registrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+        btn_agregar.setText("Agregar");
+        btn_agregar.setEnabled(false);
+        btn_agregar.setFocusable(false);
+        btn_agregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_agregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_registrarActionPerformed(evt);
+                btn_agregarActionPerformed(evt);
             }
         });
-        jToolBar1.add(btn_registrar);
+        jToolBar1.add(btn_agregar);
         jToolBar1.add(jSeparator3);
 
         jLabel2.setText("DNI cliente:  ");
@@ -148,15 +154,16 @@ public class ListVentasFrame extends javax.swing.JFrame {
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }));
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -172,7 +179,7 @@ public class ListVentasFrame extends javax.swing.JFrame {
         detalle.setItem(null);
         detalle.loadData();
         detalle.setEditable(true);
-        btn_registrar.setEnabled(true);
+        btn_agregar.setEnabled(true);
     }// GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_borrarActionPerformed
@@ -184,14 +191,14 @@ public class ListVentasFrame extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             ItemProducto item = getItemSeleccionado();
             itemServicio.eliminarItemProducto(item);
-            //venta.quitarItem(item);
+            // venta.quitarItem(item);
 
             obtenerDatos();
             model.fireTableDataChanged();
         }
     }// GEN-LAST:event_btn_borrarActionPerformed
 
-    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_registrarActionPerformed
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_registrarActionPerformed
         detalle.saveData();
         ItemProducto item = detalle.getItem();
         if (item.getId() == 0) {
@@ -203,7 +210,7 @@ public class ListVentasFrame extends javax.swing.JFrame {
         detalle.setEditable(false);
         detalle.loadData();
         // Opciones
-        btn_registrar.setEnabled(false);
+        btn_agregar.setEnabled(false);
         // Tabla
         tabla.clearSelection();
         obtenerDatos();
@@ -215,25 +222,28 @@ public class ListVentasFrame extends javax.swing.JFrame {
         String dniCliente = tf_dni.getText();
         Cliente c = clienteServicio.obtenerClientePorDni(dniCliente);
 
-        if (c == null) {
+        if (itemServicio.obtenerItemsProductoTemporales().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No has agregado ningún producto");
+        } else if (c == null) {
             JOptionPane.showMessageDialog(null, "El cliente no existe");
         } else {
             venta.setCliente(c);
             venta.setFecha_venta(new Date());
-            
+
             venta.vaciar();
-            for (ItemProducto i: itemServicio.obtenerItemsProductoTemporales()){
+            for (ItemProducto i : itemServicio.obtenerItemsProductoTemporales()) {
                 venta.agregarItem(i);
             }
-            
+
             // Generar PDF
             Pdf pdf = new Pdf();
             pdf.exportarAPdf(boleta());
-            
+
             ventaServicio.registrarVenta(this.venta);
             itemServicio.eliminarItemsProductoTemporales();
 
-            String mensaje = "Venta registrada con éxito para el cliente: " + c.getApellidoPaterno() + " " + c.getApellidoMaterno() + ", " + c.getPrimerNombre() + " " + c.getSegundoNombre();
+            String mensaje = "Venta registrada con éxito para el cliente: " + c.getApellidoPaterno() + " "
+                    + c.getApellidoMaterno() + ", " + c.getPrimerNombre() + " " + c.getSegundoNombre();
             JOptionPane.showMessageDialog(null, mensaje);
             dispose();
         }
@@ -245,11 +255,13 @@ public class ListVentasFrame extends javax.swing.JFrame {
         boleta += "Ruc: 76.123.456-7\n";
         boleta += "Direccion: Av. Siempre Viva 123\n";
         boleta += "Fecha: " + new Date() + "\n";
+        boleta += "Cliente: " + venta.getCliente().getApellidoPaterno() + " " + venta.getCliente().getApellidoMaterno()
+                + ", " + venta.getCliente().getPrimerNombre() + " " + venta.getCliente().getSegundoNombre() + "\n";
         boleta += "--------------------------------\n";
         boleta += "Detalle de venta\n";
         boleta += "--------------------------------\n";
         boleta += "Producto  -  Cantidad  -  Total\n";
-        for (ItemProducto item: itemServicio.obtenerItemsProductoTemporales()) {
+        for (ItemProducto item : itemServicio.obtenerItemsProductoTemporales()) {
             boleta += item.getProducto().getNombre() + "  -  " + item.getCantidad() + "  -  " + item.getTotal() + "\n";
         }
         boleta += "--------------------------------\n";
@@ -258,19 +270,11 @@ public class ListVentasFrame extends javax.swing.JFrame {
         return boleta;
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListVentasFrame().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_borrar;
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JButton btn_registrar;
     private com.nicolas.hostal.vista.ventas.DetalleVentaPanel detalle;
     private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel2;

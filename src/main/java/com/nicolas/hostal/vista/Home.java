@@ -6,6 +6,7 @@ import com.nicolas.hostal.vista.habitaciones.ListTiposHabitacionFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 import com.nicolas.hostal.vista.inventario.excel_inventario;
+import com.nicolas.hostal.vista.ventas.VenderFrame;
 
 public class Home extends javax.swing.JFrame {
 
@@ -33,6 +34,8 @@ public class Home extends javax.swing.JFrame {
         i_gestionar_productos = new javax.swing.JMenuItem();
         i_registrar_entradas = new javax.swing.JMenuItem();
         i_exportar_inventario = new javax.swing.JMenuItem();
+        menu_ventas = new javax.swing.JMenu();
+        i_realizar_venta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +102,18 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_inventario);
 
+        menu_ventas.setText("Ventas");
+
+        i_realizar_venta.setText("Realizar venta");
+        i_realizar_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_realizar_ventaActionPerformed(evt);
+            }
+        });
+        menu_ventas.add(i_realizar_venta);
+
+        jMenuBar1.add(menu_ventas);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,6 +159,11 @@ public class Home extends javax.swing.JFrame {
         ListHabitacionesFrame listHabitacionesFrame = new ListHabitacionesFrame();
         listHabitacionesFrame.setVisible(true);
     }//GEN-LAST:event_i_gestionar_habitacionesActionPerformed
+
+    private void i_realizar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_realizar_ventaActionPerformed
+        VenderFrame venderFrame = new VenderFrame();
+        venderFrame.setVisible(true);
+    }//GEN-LAST:event_i_realizar_ventaActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem i_exportar_inventario;
@@ -151,11 +171,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem i_gestionar_habitaciones;
     private javax.swing.JMenuItem i_gestionar_productos;
     private javax.swing.JMenuItem i_gestionar_tipos;
+    private javax.swing.JMenuItem i_realizar_venta;
     private javax.swing.JMenuItem i_registrar_entradas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_habitaciones;
     private javax.swing.JMenu menu_inicio;
     private javax.swing.JMenu menu_inventario;
     private javax.swing.JMenu menu_recepcion;
+    private javax.swing.JMenu menu_ventas;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@ package com.nicolas.hostal.util;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class Pdf {
 
     public void exportarAPdf(String mensaje) {
-        Document document = new Document();
+        Document document = new Document(PageSize.A6);
         try {
             // Obtener la marca de tiempo actual
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
