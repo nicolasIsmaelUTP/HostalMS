@@ -2,26 +2,29 @@ package com.nicolas.hostal.vista.inventario;
 
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.servicios.ProductoServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListProductosFrame extends javax.swing.JFrame {
 
     private ProductoServicio servicio;
-    
+
     private ProductosTableModel model;
 
-    private ListProductosFrame(ServManager manager) {
+    public ListProductosFrame() {
         initComponents();
         setTitle("Gestionar productos");
-        
-        this.servicio = manager.getProductoServicio();
-        this.model = new ProductosTableModel(manager);
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+
+        this.servicio = new ProductoServicio();
+        this.model = new ProductosTableModel();
         obtenerDatos();
         this.tabla.setModel(model);
-        
+
         this.detalle.setEditable(false);
-        
+
         this.tabla.getSelectionModel().addListSelectionListener(e -> {
             boolean seleccionValida = (tabla.getSelectedRow() != -1);
             editar.setEnabled(seleccionValida);
@@ -29,14 +32,15 @@ public class ListProductosFrame extends javax.swing.JFrame {
         });
     }
 
-    final void obtenerDatos(){
+    final void obtenerDatos() {
         estado.setText("Actualizando modelo...");
         model.updateModel();
-        estado.setText(model.getRowCount()+" productos visibles");
+        estado.setText(model.getRowCount() + " productos visibles");
     }
-    
+
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         toolbar = new javax.swing.JToolBar();
@@ -110,16 +114,15 @@ public class ListProductosFrame extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane1.setViewportView(tabla);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -138,22 +141,22 @@ public class ListProductosFrame extends javax.swing.JFrame {
         return servicio.obtenerProducto(id);
     }
 
-    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_editarActionPerformed
         Producto producto = getProductoSeleccionado();
         detalle.setProducto(producto);
         detalle.setEditable(true);
         detalle.loadData();
         guardar.setEnabled(true);
-    }//GEN-LAST:event_editarActionPerformed
+    }// GEN-LAST:event_editarActionPerformed
 
-    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nuevoActionPerformed
         detalle.setProducto(null);
         detalle.loadData();
         detalle.setEditable(true);
         guardar.setEnabled(true);
-    }//GEN-LAST:event_nuevoActionPerformed
+    }// GEN-LAST:event_nuevoActionPerformed
 
-    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_guardarActionPerformed
         detalle.saveData();
         Producto producto = detalle.getProducto();
         if (producto.getId() == 0) {
@@ -171,7 +174,7 @@ public class ListProductosFrame extends javax.swing.JFrame {
         tabla.clearSelection();
         obtenerDatos();
         model.fireTableDataChanged();
-    }//GEN-LAST:event_guardarActionPerformed
+    }// GEN-LAST:event_guardarActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         if (JOptionPane.showConfirmDialog(
@@ -181,19 +184,24 @@ public class ListProductosFrame extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Producto producto = getProductoSeleccionado();
-            servicio.borrarProducto(producto);
+
+            // try {
+                servicio.borrarProducto(producto);
+            // } catch (Exception e) {
+            //     JOptionPane.showMessageDialog(
+            //             rootPane,
+            //             "No se puede borrar el producto porque tiene entradas asociadas\n"
+            //             + "Puedes desactivar el producto en su lugar.",
+            //             "Error",
+            //             JOptionPane.ERROR_MESSAGE);
+            // }
+            
+            // O puede que haya ventas asociadas también
             
             obtenerDatos();
             model.fireTableDataChanged();
         }
-    }//GEN-LAST:event_borrarActionPerformed
-
-    public static void main(String args[]) {
-        ServManager manager = new ServManager();
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListProductosFrame(manager).setVisible(true);
-        });
-    }
+    }// GEN-LAST:event_borrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;

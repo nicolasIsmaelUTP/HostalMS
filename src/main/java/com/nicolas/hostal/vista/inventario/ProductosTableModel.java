@@ -13,8 +13,8 @@ public class ProductosTableModel extends AbstractTableModel{
     
     private List<Producto> datos = new ArrayList<>();
     
-    public ProductosTableModel(ServManager manager){
-        this.servicio = manager.getProductoServicio();
+    public ProductosTableModel(){
+        this.servicio = new ProductoServicio();
     }
     
     public void updateModel(){
