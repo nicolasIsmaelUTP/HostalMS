@@ -2,24 +2,27 @@ package com.nicolas.hostal.vista.inventario;
 
 import com.nicolas.hostal.modelo.ProductoEntrante;
 import com.nicolas.hostal.servicios.ProductoEntranteServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListProductosEntrantesFrame extends javax.swing.JFrame {
     
-    private ProductoEntranteServicio servicio;
+    private final ProductoEntranteServicio servicio;
     
-    private ProductosEntrantesTableModel model;
+    private final ProductosEntrantesTableModel model;
     
 
-    public ListProductosEntrantesFrame(ServManager manager) {
+    public ListProductosEntrantesFrame() {
         initComponents();
         setTitle("Registrar entrada de producto");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
         
-        this.servicio = manager.getProductoEntranteServicio();
+        this.servicio = new ProductoEntranteServicio();
         
         // Tabla
-        this.model = new ProductosEntrantesTableModel(manager);
+        this.model = new ProductosEntrantesTableModel();
 
         // Copiar y pegar
         obtenerDatos();
@@ -195,12 +198,6 @@ public class ListProductosEntrantesFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_borrarActionPerformed
 
-    public static void main(String args[]) {
-        ServManager manager = new ServManager();
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListProductosEntrantesFrame(manager).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;

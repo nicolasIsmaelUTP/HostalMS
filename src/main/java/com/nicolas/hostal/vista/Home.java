@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista;
 
+import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 
 public class Home extends javax.swing.JFrame {
@@ -39,6 +40,11 @@ public class Home extends javax.swing.JFrame {
         menu_inventario.add(i_gestionar_productos);
 
         i_registrar_entradas.setText("Registrar entradas");
+        i_registrar_entradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_registrar_entradasActionPerformed(evt);
+            }
+        });
         menu_inventario.add(i_registrar_entradas);
 
         jMenuBar1.add(menu_inventario);
@@ -63,6 +69,11 @@ public class Home extends javax.swing.JFrame {
         ListProductosFrame listProductosFrame = new ListProductosFrame();
         listProductosFrame.setVisible(true);
     }//GEN-LAST:event_i_gestionar_productosActionPerformed
+
+    private void i_registrar_entradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_registrar_entradasActionPerformed
+        ListProductosEntrantesFrame listProductosEntrantesFrame = new ListProductosEntrantesFrame();
+        listProductosEntrantesFrame.setVisible(true);
+    }//GEN-LAST:event_i_registrar_entradasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

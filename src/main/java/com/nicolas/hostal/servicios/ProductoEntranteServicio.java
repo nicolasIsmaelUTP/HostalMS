@@ -3,6 +3,7 @@ package com.nicolas.hostal.servicios;
 import com.nicolas.hostal.dao.DAOManager;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
+import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.ProductoEntrante;
 import java.util.List;
@@ -12,9 +13,9 @@ public class ProductoEntranteServicio {
     Producto_entranteDAO entrantes;
     ProductoDAO productos;
 
-    public ProductoEntranteServicio(DAOManager manager) {
-        this.entrantes = manager.getProducto_entranteDAO();
-        this.productos = manager.getProductoDAO();
+    public ProductoEntranteServicio() {
+        this.entrantes = MySQLDaoManager.getInstance().getProducto_entranteDAO();
+        this.productos = MySQLDaoManager.getInstance().getProductoDAO();
     }
     
     // CRUD

@@ -14,8 +14,8 @@ public class ProductosEntrantesTableModel extends AbstractTableModel{
     
     private List<ProductoEntrante> datos = new ArrayList<>();
     
-    public ProductosEntrantesTableModel(ServManager manager){
-        this.servicio = manager.getProductoEntranteServicio();
+    public ProductosEntrantesTableModel(){
+        this.servicio = new ProductoEntranteServicio();
     }
     
     public void updateModel(){

@@ -185,18 +185,16 @@ public class ListProductosFrame extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Producto producto = getProductoSeleccionado();
 
-            // try {
+            try {
                 servicio.borrarProducto(producto);
-            // } catch (Exception e) {
-            //     JOptionPane.showMessageDialog(
-            //             rootPane,
-            //             "No se puede borrar el producto porque tiene entradas asociadas\n"
-            //             + "Puedes desactivar el producto en su lugar.",
-            //             "Error",
-            //             JOptionPane.ERROR_MESSAGE);
-            // }
-            
-            // O puede que haya ventas asociadas también
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                        rootPane,
+                        "No se puede borrar el producto porque tiene entradas o ventas asociadas.\n"
+                                + "Prueba desactivarlo en su lugar.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
             
             obtenerDatos();
             model.fireTableDataChanged();
