@@ -191,11 +191,6 @@ public class ListHabitacionesFrame extends javax.swing.JFrame {
         obtenerDatos();
         model.fireTableDataChanged();    }//GEN-LAST:event_guardarActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListHabitacionesFrame().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;

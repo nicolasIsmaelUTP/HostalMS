@@ -186,12 +186,6 @@ public class ListTiposHabitacionFrame extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }//GEN-LAST:event_guardarActionPerformed
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListTiposHabitacionFrame().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;
