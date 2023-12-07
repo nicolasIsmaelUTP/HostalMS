@@ -2,6 +2,7 @@ package com.nicolas.hostal.vista;
 
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
+import com.nicolas.hostal.vista.inventario.excel_inventario;
 
 public class Home extends javax.swing.JFrame {
 
@@ -23,6 +24,7 @@ public class Home extends javax.swing.JFrame {
         menu_inventario = new javax.swing.JMenu();
         i_gestionar_productos = new javax.swing.JMenuItem();
         i_registrar_entradas = new javax.swing.JMenuItem();
+        i_exportar_inventario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +48,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
         menu_inventario.add(i_registrar_entradas);
+
+        i_exportar_inventario.setText("Exportar inventario");
+        i_exportar_inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_exportar_inventarioActionPerformed(evt);
+            }
+        });
+        menu_inventario.add(i_exportar_inventario);
 
         jMenuBar1.add(menu_inventario);
 
@@ -75,6 +85,11 @@ public class Home extends javax.swing.JFrame {
         listProductosEntrantesFrame.setVisible(true);
     }//GEN-LAST:event_i_registrar_entradasActionPerformed
 
+    private void i_exportar_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_exportar_inventarioActionPerformed
+        excel_inventario excel_inventario = new excel_inventario();
+        excel_inventario.setVisible(true);
+    }//GEN-LAST:event_i_exportar_inventarioActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -84,6 +99,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem i_exportar_inventario;
     private javax.swing.JMenuItem i_gestionar_productos;
     private javax.swing.JMenuItem i_registrar_entradas;
     private javax.swing.JMenuBar jMenuBar1;

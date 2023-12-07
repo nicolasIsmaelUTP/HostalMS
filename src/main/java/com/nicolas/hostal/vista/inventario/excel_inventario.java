@@ -19,6 +19,12 @@ public final class excel_inventario extends javax.swing.JFrame {
 
     public excel_inventario() {
         initComponents();
+        this.setTitle("Exportar inventario");
+        this.setResizable(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setSize(400, 150);
+        this.setLocationRelativeTo(null);
+
         cargarCategorias();
     }
 
@@ -127,12 +133,6 @@ public final class excel_inventario extends javax.swing.JFrame {
 
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         exportarExcel();
-    }
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new excel_inventario().setVisible(true);
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
