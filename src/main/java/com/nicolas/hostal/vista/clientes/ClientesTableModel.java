@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ClientesTableModel extends AbstractTableModel {
 
-    private ClienteServicio servicio;
+    private final ClienteServicio servicio;
 
     private List<Cliente> datos = new ArrayList<>();
 
-    public ClientesTableModel(ServManager manager) {
-        this.servicio = manager.getClienteServicio();
+    public ClientesTableModel() {
+        this.servicio = new ClienteServicio();
     }
 
     public void updateModel() {

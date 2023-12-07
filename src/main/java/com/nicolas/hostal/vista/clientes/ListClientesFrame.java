@@ -2,21 +2,24 @@ package com.nicolas.hostal.vista.clientes;
 
 import com.nicolas.hostal.modelo.Cliente;
 import com.nicolas.hostal.servicios.ClienteServicio;
-import com.nicolas.hostal.servicios.ServManager;
 import javax.swing.JOptionPane;
 
 public class ListClientesFrame extends javax.swing.JFrame {
 
-    private ClienteServicio servicio;
+    private final ClienteServicio servicio;
     
-    private ClientesTableModel model;
+    private final ClientesTableModel model;
     
-    public ListClientesFrame(ServManager manager) {
+    public ListClientesFrame() {
         initComponents();
         setTitle("Gestionar clientes");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
         
-        this.servicio = manager.getClienteServicio();
-        this.model = new ClientesTableModel(manager);
+        this.servicio = new ClienteServicio();
+        this.model = new ClientesTableModel();
         obtenerDatos();
         this.tabla.setModel(model);
         
@@ -183,12 +186,6 @@ public class ListClientesFrame extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    public static void main(String args[]) {
-        ServManager manager = new ServManager();
-        java.awt.EventQueue.invokeLater(() -> {
-            new ListClientesFrame(manager).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;

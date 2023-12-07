@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista;
 
+import com.nicolas.hostal.vista.clientes.ListClientesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 import com.nicolas.hostal.vista.inventario.excel_inventario;
@@ -21,6 +22,8 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_inicio = new javax.swing.JMenu();
+        menu_recepcion = new javax.swing.JMenu();
+        i_gestionar_clientes = new javax.swing.JMenuItem();
         menu_inventario = new javax.swing.JMenu();
         i_gestionar_productos = new javax.swing.JMenuItem();
         i_registrar_entradas = new javax.swing.JMenuItem();
@@ -30,6 +33,18 @@ public class Home extends javax.swing.JFrame {
 
         menu_inicio.setText("Inicio");
         jMenuBar1.add(menu_inicio);
+
+        menu_recepcion.setText("Recepción");
+
+        i_gestionar_clientes.setText("Gestionar clientes");
+        i_gestionar_clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_gestionar_clientesActionPerformed(evt);
+            }
+        });
+        menu_recepcion.add(i_gestionar_clientes);
+
+        jMenuBar1.add(menu_recepcion);
 
         menu_inventario.setText("Inventario");
 
@@ -90,20 +105,19 @@ public class Home extends javax.swing.JFrame {
         excel_inventario.setVisible(true);
     }//GEN-LAST:event_i_exportar_inventarioActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
+    private void i_gestionar_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_clientesActionPerformed
+        ListClientesFrame listClientesFrame = new ListClientesFrame();
+        listClientesFrame.setVisible(true);
+    }//GEN-LAST:event_i_gestionar_clientesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem i_exportar_inventario;
+    private javax.swing.JMenuItem i_gestionar_clientes;
     private javax.swing.JMenuItem i_gestionar_productos;
     private javax.swing.JMenuItem i_registrar_entradas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_inicio;
     private javax.swing.JMenu menu_inventario;
+    private javax.swing.JMenu menu_recepcion;
     // End of variables declaration//GEN-END:variables
 }

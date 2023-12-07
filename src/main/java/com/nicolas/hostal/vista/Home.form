@@ -9,6 +9,21 @@
             <Property name="text" type="java.lang.String" value="Inicio"/>
           </Properties>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="menu_recepcion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Recepci&#xf3;n"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="i_gestionar_clientes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gestionar clientes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="i_gestionar_clientesActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="menu_inventario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inventario"/>
