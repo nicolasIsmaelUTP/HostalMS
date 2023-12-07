@@ -74,6 +74,11 @@ public class ProductoServicio {
 
     // Otros metodos
 
+    /**
+     * Obtiene una lista de categorías distintas de los productos activos.
+     * 
+     * @return una lista de categorías distintas de los productos activos
+     */
     public List<String> obtenerCategorias() {
         List<String> distinctCategorias = obtenerTodosProductosActivos().stream()
                 .map(p -> p.getCategoria())
@@ -82,10 +87,26 @@ public class ProductoServicio {
         return distinctCategorias;
     }
 
+    /**
+     * Obtiene una lista de productos por categoría.
+     * 
+     * @param categoria La categoría de los productos a obtener.
+     * @return Una lista de productos que pertenecen a la categoría especificada.
+     */
     public List<Producto> obtenerProductosPorCategoria(String categoria) {
         List<Producto> productosPorCategoria = obtenerTodosProductosActivos().stream()
                 .filter(p -> p.getCategoria().equals(categoria))
                 .collect(Collectors.toList());
         return productosPorCategoria;
+    }
+
+    /**
+     * Verifica si existe una entrada de producto para el producto dado.
+     * 
+     * @param p el producto para el cual se desea verificar la existencia de una entrada
+     * @return true si existe una entrada de producto para el producto dado, false de lo contrario
+     */
+    public boolean existeEntradaProducto(Producto p) {
+        return new ProductoEntranteServicio().obtenerIdsProductosConEntradas().contains(p.getId());
     }
 }

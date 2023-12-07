@@ -5,7 +5,11 @@ import com.nicolas.hostal.dao.Producto_entranteDAO;
 import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Producto;
 import com.nicolas.hostal.modelo.ProductoEntrante;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ProductoEntranteServicio {
 
@@ -65,5 +69,16 @@ public class ProductoEntranteServicio {
     
     public Producto obtenerProducto(ProductoEntrante pe){
         return productos.obtener(pe.getProducto_id());
+    }
+    
+    // Obteniendo lista de IDs de productos con entradas
+
+    public List<Integer> obtenerIdsProductosConEntradas() {
+        List<ProductoEntrante> lista = entrantes.obtenerTodos();
+        Set<Integer> setIds = new HashSet<>();
+        for (ProductoEntrante pe : lista) {
+            setIds.add(pe.getProducto_id());
+        }
+        return new ArrayList<>(setIds);
     }
 }

@@ -176,26 +176,38 @@ public class ListProductosFrame extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }// GEN-LAST:event_guardarActionPerformed
 
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        if (JOptionPane.showConfirmDialog(
+    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_borrarActionPerformed
+        int confirmResult = JOptionPane.showConfirmDialog(
                 rootPane,
                 "¿Seguro que quieres eliminar este producto?",
                 "Borrar producto",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (confirmResult == JOptionPane.YES_OPTION) {
             Producto producto = getProductoSeleccionado();
+
+            if (servicio.existeEntradaProducto(producto)) {
+                JOptionPane.showMessageDialog(
+                        rootPane,
+                        "No se puede borrar el producto porque tiene entradas asociadas.\n"
+                                + "Prueba desactivarlo en su lugar.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             try {
                 servicio.borrarProducto(producto);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
                         rootPane,
-                        "No se puede borrar el producto porque tiene entradas o ventas asociadas.\n"
+                        "No se puede borrar el producto porque tiene ventas asociadas.\n"
                                 + "Prueba desactivarlo en su lugar.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-            
+
             obtenerDatos();
             model.fireTableDataChanged();
         }
