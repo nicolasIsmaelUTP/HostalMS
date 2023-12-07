@@ -1,6 +1,8 @@
 package com.nicolas.hostal.vista;
 
 import com.nicolas.hostal.vista.clientes.ListClientesFrame;
+import com.nicolas.hostal.vista.habitaciones.ListHabitacionesFrame;
+import com.nicolas.hostal.vista.habitaciones.ListTiposHabitacionFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 import com.nicolas.hostal.vista.inventario.excel_inventario;
@@ -24,6 +26,9 @@ public class Home extends javax.swing.JFrame {
         menu_inicio = new javax.swing.JMenu();
         menu_recepcion = new javax.swing.JMenu();
         i_gestionar_clientes = new javax.swing.JMenuItem();
+        menu_habitaciones = new javax.swing.JMenu();
+        i_gestionar_habitaciones = new javax.swing.JMenuItem();
+        i_gestionar_tipos = new javax.swing.JMenuItem();
         menu_inventario = new javax.swing.JMenu();
         i_gestionar_productos = new javax.swing.JMenuItem();
         i_registrar_entradas = new javax.swing.JMenuItem();
@@ -45,6 +50,26 @@ public class Home extends javax.swing.JFrame {
         menu_recepcion.add(i_gestionar_clientes);
 
         jMenuBar1.add(menu_recepcion);
+
+        menu_habitaciones.setText("Habitaciones");
+
+        i_gestionar_habitaciones.setText("Gestionar habitaciones");
+        i_gestionar_habitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_gestionar_habitacionesActionPerformed(evt);
+            }
+        });
+        menu_habitaciones.add(i_gestionar_habitaciones);
+
+        i_gestionar_tipos.setText("Gestionar tipos de habitación");
+        i_gestionar_tipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_gestionar_tiposActionPerformed(evt);
+            }
+        });
+        menu_habitaciones.add(i_gestionar_tipos);
+
+        jMenuBar1.add(menu_habitaciones);
 
         menu_inventario.setText("Inventario");
 
@@ -110,12 +135,25 @@ public class Home extends javax.swing.JFrame {
         listClientesFrame.setVisible(true);
     }//GEN-LAST:event_i_gestionar_clientesActionPerformed
 
+    private void i_gestionar_tiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_tiposActionPerformed
+        ListTiposHabitacionFrame listTiposHabitacionFrame = new ListTiposHabitacionFrame();
+        listTiposHabitacionFrame.setVisible(true);
+    }//GEN-LAST:event_i_gestionar_tiposActionPerformed
+
+    private void i_gestionar_habitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_gestionar_habitacionesActionPerformed
+        ListHabitacionesFrame listHabitacionesFrame = new ListHabitacionesFrame();
+        listHabitacionesFrame.setVisible(true);
+    }//GEN-LAST:event_i_gestionar_habitacionesActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem i_exportar_inventario;
     private javax.swing.JMenuItem i_gestionar_clientes;
+    private javax.swing.JMenuItem i_gestionar_habitaciones;
     private javax.swing.JMenuItem i_gestionar_productos;
+    private javax.swing.JMenuItem i_gestionar_tipos;
     private javax.swing.JMenuItem i_registrar_entradas;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menu_habitaciones;
     private javax.swing.JMenu menu_inicio;
     private javax.swing.JMenu menu_inventario;
     private javax.swing.JMenu menu_recepcion;

@@ -10,9 +10,13 @@ public class ListTiposHabitacionFrame extends javax.swing.JFrame {
 
     private final TiposHabitacionTableModel model;
 
-    private ListTiposHabitacionFrame() {
+    public ListTiposHabitacionFrame() {
         initComponents();
         setTitle("Gestionar tipos de habitacion y tarifas");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
 
         this.servicio = new TipoHabitacionServicio();
         this.model = new TiposHabitacionTableModel();

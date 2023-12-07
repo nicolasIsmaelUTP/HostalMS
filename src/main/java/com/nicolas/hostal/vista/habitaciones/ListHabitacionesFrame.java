@@ -6,13 +6,17 @@ import javax.swing.JOptionPane;
 
 public class ListHabitacionesFrame extends javax.swing.JFrame {
 
-    private HabitacionServicio servicio;
+    private final HabitacionServicio servicio;
 
-    private HabitacionesTableModel model;
+    private final HabitacionesTableModel model;
 
     public ListHabitacionesFrame() {
         initComponents();
         setTitle("Gestionar habitaciones");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
 
         this.servicio = new HabitacionServicio();
 
