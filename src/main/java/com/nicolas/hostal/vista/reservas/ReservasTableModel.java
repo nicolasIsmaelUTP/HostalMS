@@ -2,6 +2,8 @@ package com.nicolas.hostal.vista.reservas;
 
 import com.nicolas.hostal.modelo.Reserva;
 import com.nicolas.hostal.servicios.ReservaServicio;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -45,12 +47,13 @@ public class ReservasTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         Reserva preguntado = datos.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> preguntado.getId();
             case 1 -> preguntado.getHabitacion().getNumero();
-            case 2 -> preguntado.getHora_prevista_llegada();
-            case 3 -> preguntado.getHora_prevista_salida();
+            case 2 -> dateFormat.format(preguntado.getHora_prevista_llegada());
+            case 3 -> dateFormat.format(preguntado.getHora_prevista_salida());
             case 4 -> preguntado.getEstado();
             case 5 -> preguntado.getCliente().getNumDoc();
             default -> "";

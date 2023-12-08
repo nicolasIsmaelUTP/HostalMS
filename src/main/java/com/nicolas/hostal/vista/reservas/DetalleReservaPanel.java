@@ -1,16 +1,24 @@
 package com.nicolas.hostal.vista.reservas;
 
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import com.nicolas.hostal.modelo.Reserva;
+import com.nicolas.hostal.servicios.ReservaServicio;
+import java.text.SimpleDateFormat;
 
 public class DetalleReservaPanel extends javax.swing.JPanel {
 
     private Reserva reserva;
+
     private boolean editable;
+
+    private ReservaServicio reservaServicio;
 
     public DetalleReservaPanel() {
         initComponents();
+        reservaServicio = new ReservaServicio();
     }
 
     public Reserva getReserva() {
@@ -39,14 +47,16 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
             tf_id.setText(String.valueOf(reserva.getId()));
             tf_habitacion.setText(reserva.getHabitacion().getNumero());
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+
             if (reserva.getCheckin() != null) {
-                tf_checkin.setText(reserva.getCheckin().toString());
+                tf_checkin.setText(dateFormat.format(reserva.getCheckin()));
             } else {
                 tf_checkin.setText("Aun no");
             }
 
             if (reserva.getCheckout() != null) {
-                tf_checkout.setText(reserva.getCheckout().toString());
+                tf_checkout.setText(dateFormat.format(reserva.getCheckout()));
             } else {
                 tf_checkout.setText("Aun no");
             }
@@ -205,11 +215,15 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_setcheckinActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckinActionPerformed
-        
+        reserva.setCheckin(new Date());
+        reservaServicio.modificarReserva(reserva);
+        loadData();
     }// GEN-LAST:event_btn_setcheckinActionPerformed
 
     private void btn_setcheckoutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckoutActionPerformed
-        // TODO add your handling code here:
+        reserva.setCheckout(new Date());
+        reservaServicio.modificarReserva(reserva);
+        loadData();
     }// GEN-LAST:event_btn_setcheckoutActionPerformed
 
     private void btn_showActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_showActionPerformed
