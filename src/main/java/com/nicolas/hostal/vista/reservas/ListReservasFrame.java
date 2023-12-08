@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista.reservas;
 
+import com.nicolas.hostal.modelo.EstadoReserva;
 import com.nicolas.hostal.modelo.Reserva;
 import com.nicolas.hostal.servicios.ReservaServicio;
 
@@ -25,11 +26,13 @@ public class ListReservasFrame extends javax.swing.JFrame {
         this.detalle.setEditable(false);
 
         this.tabla.getSelectionModel().addListSelectionListener(e -> {
-            Reserva reserva = getReservaSeleccionada();
-            detalle.setReserva(reserva);
-            detalle.setEditable(true);
-            detalle.loadData();
-            btn_guardar.setEnabled(true);
+            if (tabla.getSelectedRow() != -1) {
+                Reserva reserva = getReservaSeleccionada();
+                detalle.setReserva(reserva);
+                detalle.setEditable(true);
+                detalle.loadData();
+                btn_guardar.setEnabled(true);
+            }
         });
     }
 
@@ -46,7 +49,8 @@ public class ListReservasFrame extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
@@ -65,6 +69,11 @@ public class ListReservasFrame extends javax.swing.JFrame {
         btn_cancelar.setFocusable(false);
         btn_cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_cancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_cancelar);
 
         btn_guardar.setText("Guardar");
@@ -76,16 +85,15 @@ public class ListReservasFrame extends javax.swing.JFrame {
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -96,6 +104,22 @@ public class ListReservasFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_cancelarActionPerformed
+        Reserva r = getReservaSeleccionada();
+        r.setEstado(EstadoReserva.CANCELADA);
+        servicio.modificarReserva(r);
+
+        // Limpiar detalle
+        detalle.setReserva(null);
+        detalle.setEditable(false);
+        detalle.loadData();
+
+        // Actualizar modelo
+        obtenerDatos();
+        btn_guardar.setEnabled(false);
+        model.fireTableDataChanged();
+    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

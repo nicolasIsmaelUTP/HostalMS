@@ -14,7 +14,7 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
 
     private boolean editable;
 
-    private ReservaServicio reservaServicio;
+    private final ReservaServicio reservaServicio;
 
     public DetalleReservaPanel() {
         initComponents();
@@ -35,6 +35,7 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
 
     public void setEditable(boolean editable) {
         this.editable = editable;
+        tf_id.setEditable(editable);
         tf_habitacion.setEditable(editable);
         tf_checkin.setEditable(editable);
         tf_checkout.setEditable(editable);
@@ -64,6 +65,7 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
             tf_numpersonas.setText(String.valueOf(reserva.getNumero_personas()));
             tf_cliente.setText(reserva.getCliente().getNumDoc());
         } else {
+            tf_id.setText("");
             tf_habitacion.setText("");
             tf_checkin.setText("");
             tf_checkout.setText("");
@@ -215,15 +217,35 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_setcheckinActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckinActionPerformed
-        reserva.setCheckin(new Date());
-        reservaServicio.modificarReserva(reserva);
-        loadData();
+        if (reserva.getCheckin() != null) {
+            int option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-in?",
+                    "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                reserva.setCheckin(new Date());
+                reservaServicio.modificarReserva(reserva);
+                loadData();
+            }
+        } else {
+            reserva.setCheckin(new Date());
+            reservaServicio.modificarReserva(reserva);
+            loadData();
+        }
     }// GEN-LAST:event_btn_setcheckinActionPerformed
 
     private void btn_setcheckoutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckoutActionPerformed
-        reserva.setCheckout(new Date());
-        reservaServicio.modificarReserva(reserva);
-        loadData();
+        if (reserva.getCheckout() != null) {
+            int option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-out?",
+                    "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                reserva.setCheckout(new Date());
+                reservaServicio.modificarReserva(reserva);
+                loadData();
+            }
+        } else {
+            reserva.setCheckout(new Date());
+            reservaServicio.modificarReserva(reserva);
+            loadData();
+        }
     }// GEN-LAST:event_btn_setcheckoutActionPerformed
 
     private void btn_showActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_showActionPerformed
