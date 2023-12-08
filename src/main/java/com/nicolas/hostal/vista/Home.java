@@ -6,6 +6,7 @@ import com.nicolas.hostal.vista.habitaciones.ListTiposHabitacionFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosEntrantesFrame;
 import com.nicolas.hostal.vista.inventario.ListProductosFrame;
 import com.nicolas.hostal.vista.inventario.excel_inventario;
+import com.nicolas.hostal.vista.reservas.ReservarFrame;
 import com.nicolas.hostal.vista.usuarios.ListUsuariosFrame;
 import com.nicolas.hostal.vista.ventas.VenderFrame;
 
@@ -28,6 +29,7 @@ public class Home extends javax.swing.JFrame {
         menu_inicio = new javax.swing.JMenu();
         menu_recepcion = new javax.swing.JMenu();
         i_gestionar_clientes = new javax.swing.JMenuItem();
+        i_reservar = new javax.swing.JMenuItem();
         menu_habitaciones = new javax.swing.JMenu();
         i_gestionar_habitaciones = new javax.swing.JMenuItem();
         i_gestionar_tipos = new javax.swing.JMenuItem();
@@ -55,6 +57,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
         menu_recepcion.add(i_gestionar_clientes);
+
+        i_reservar.setText("Reservar habitación");
+        i_reservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                i_reservarActionPerformed(evt);
+            }
+        });
+        menu_recepcion.add(i_reservar);
 
         jMenuBar1.add(menu_recepcion);
 
@@ -198,6 +208,11 @@ public class Home extends javax.swing.JFrame {
         ListMetodosPagoFrame listMetodosPagoFrame = new ListMetodosPagoFrame();
         listMetodosPagoFrame.setVisible(true);
     }//GEN-LAST:event_i_gestionar_metodosActionPerformed
+
+    private void i_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_i_reservarActionPerformed
+        ReservarFrame reservarFrame = new ReservarFrame();
+        reservarFrame.setVisible(true);
+    }//GEN-LAST:event_i_reservarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem i_exportar_inventario;
@@ -209,6 +224,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem i_gestionar_usuarios;
     private javax.swing.JMenuItem i_realizar_venta;
     private javax.swing.JMenuItem i_registrar_entradas;
+    private javax.swing.JMenuItem i_reservar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_admin;
     private javax.swing.JMenu menu_habitaciones;

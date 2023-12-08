@@ -1,6 +1,5 @@
 package com.nicolas.hostal.vista.reservas;
 
-import java.awt.HeadlessException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -10,13 +9,20 @@ public class ReservarFrame extends javax.swing.JFrame {
 
     public ReservarFrame() {
         initComponents();
+        setTitle("Reservar");
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(400, 400);
+        setLocationRelativeTo(null);
 
         Calendar a = new GregorianCalendar();
+        a.add(Calendar.MINUTE, 5);
         date_ingreso.setCalendar(a);
         date_salida.setCalendar(a);
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -30,6 +36,8 @@ public class ReservarFrame extends javax.swing.JFrame {
         date_salida = new com.toedter.calendar.JDateChooser();
         btn_tres = new javax.swing.JButton();
         btn_veinticuatro = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,119 +67,142 @@ public class ReservarFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("N°de personas:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(date_ingreso, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(date_salida, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(date_salida, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextField1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btn_tres, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_tres, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_veinticuatro, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(date_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_veinticuatro, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addComponent(jSpinner1)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(date_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(date_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_tres)
                     .addComponent(btn_veinticuatro))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(date_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tresActionPerformed
+    private void btn_tresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_tresActionPerformed
         try {
-            // Get the selected date
+            // Obtener la fecha seleccionada
             Calendar selectedDate = date_ingreso.getCalendar();
 
-            // Get the current date
+            // Obtener la fecha actual
             Calendar currentDate = new GregorianCalendar();
 
-            // Compare the selected date with the current date
+            // Comparar la fecha seleccionada con la fecha actual
             if (selectedDate.after(currentDate)) {
-                // Add 3 hours to the selected date
+                // Agregar 3 horas a la fecha seleccionada
                 selectedDate.add(Calendar.HOUR_OF_DAY, 3);
 
-                // Set the updated date as the departure date
+                // Establecer la fecha actualizada como fecha de salida
                 date_salida.setCalendar(selectedDate);
             } else {
-                JOptionPane.showMessageDialog(this, "La fecha de ingreso debe ser en el futuro", "Error", JOptionPane.ERROR_MESSAGE);
+                // Automáticamente la fecha de ingreso es la actual más 5 minutos
+                selectedDate = new GregorianCalendar();
+                selectedDate.add(Calendar.MINUTE, 5);
+                date_ingreso.setCalendar(selectedDate);
+
+                // Sumarle 3 horas a la fecha de salida
+                selectedDate.add(Calendar.HOUR_OF_DAY, 3);
+
+                // Establecer la fecha de salida
+                date_salida.setCalendar(selectedDate);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fecha de ingreso inválida", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_tresActionPerformed
+    }// GEN-LAST:event_btn_tresActionPerformed
 
-    private void btn_veinticuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_veinticuatroActionPerformed
+    private void btn_veinticuatroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_veinticuatroActionPerformed
         try {
-            // Get the selected date
+            // Obtener la fecha seleccionada
             Calendar selectedDate = date_ingreso.getCalendar();
 
-            // Get the current date
+            // Obtener la fecha actual
             Calendar currentDate = new GregorianCalendar();
 
-            // Compare the selected date with the current date
+            // Comparar la fecha seleccionada con la fecha actual
             if (selectedDate.after(currentDate)) {
-                // Add 24 hours to the selected date
+                // Agregar 24 horas a la fecha seleccionada
                 selectedDate.add(Calendar.HOUR_OF_DAY, 24);
 
-                // Set the updated date as the departure date
+                // Establecer la fecha actualizada como fecha de salida
                 date_salida.setCalendar(selectedDate);
             } else {
-                JOptionPane.showMessageDialog(this, "La fecha de ingreso debe ser en el futuro", "Error", JOptionPane.ERROR_MESSAGE);
+                // Automáticamente la fecha de ingreso es la actual más 5 minutos
+                selectedDate = new GregorianCalendar();
+                selectedDate.add(Calendar.MINUTE, 5);
+                date_ingreso.setCalendar(selectedDate);
+
+                // Sumarle 24 horas a la fecha de salida
+                selectedDate.add(Calendar.HOUR_OF_DAY, 24);
+
+                // Establecer la fecha de salida
+                date_salida.setCalendar(selectedDate);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fecha de ingreso inválida", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_veinticuatroActionPerformed
+    }// GEN-LAST:event_btn_veinticuatroActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReservarFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_tres;
@@ -183,6 +214,8 @@ public class ReservarFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
