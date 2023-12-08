@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 
 public class ListProductosFrame extends javax.swing.JFrame {
 
-    private ProductoServicio servicio;
+    private final ProductoServicio servicio;
 
-    private ProductosTableModel model;
+    private final ProductosTableModel model;
 
     public ListProductosFrame() {
         initComponents();
