@@ -4,7 +4,6 @@ import com.nicolas.hostal.modelo.Habitacion;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class ReservarFrame extends javax.swing.JFrame {

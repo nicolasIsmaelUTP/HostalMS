@@ -7,6 +7,7 @@ import com.nicolas.hostal.dao.ItemProductoDAO;
 import com.nicolas.hostal.dao.MetodoPagoDAO;
 import com.nicolas.hostal.dao.ProductoDAO;
 import com.nicolas.hostal.dao.Producto_entranteDAO;
+import com.nicolas.hostal.dao.ReservaDAO;
 import com.nicolas.hostal.dao.RolDAO;
 import com.nicolas.hostal.dao.TipoHabitacionDAO;
 import com.nicolas.hostal.dao.UsuarioDAO;
@@ -33,6 +34,7 @@ public class MySQLDaoManager implements DAOManager {
     private RolDAO roles = null;
     private VentaDAO ventas = null;
     private ItemProductoDAO itemsproducto = null;
+    private ReservaDAO reservas = null;
 
     // Constructor privado
     public MySQLDaoManager() {
@@ -125,6 +127,14 @@ public class MySQLDaoManager implements DAOManager {
             itemsproducto = new MySQLItemProductoDAO(emf);
         }
         return itemsproducto;
+    }
+
+    @Override
+    public ReservaDAO getReservaDAO() {
+        if (reservas == null){
+            reservas = new MySQLResevaDAO(emf);
+        }
+        return reservas;
     }
 
 }
