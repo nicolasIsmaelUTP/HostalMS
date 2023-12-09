@@ -3,6 +3,7 @@ package com.nicolas.hostal.vista.reservas;
 import com.nicolas.hostal.modelo.EstadoReserva;
 import com.nicolas.hostal.modelo.Reserva;
 import com.nicolas.hostal.servicios.ReservaServicio;
+import com.nicolas.hostal.vista.pagos.PagarFrame;
 
 public class ListReservasFrame extends javax.swing.JFrame {
 
@@ -50,15 +51,16 @@ public class ListReservasFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
         btn_cancelar = new javax.swing.JButton();
+        btn_gestionar_pagos = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        detalle = new com.nicolas.hostal.vista.reservas.DetalleReservaPanel();
+detalle = new com.nicolas.hostal.vista.reservas.DetalleReservaPanel();
         estado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,6 +78,17 @@ public class ListReservasFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_cancelar);
 
+        btn_gestionar_pagos.setText("Gestionar pagos");
+        btn_gestionar_pagos.setFocusable(false);
+        btn_gestionar_pagos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_gestionar_pagos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_gestionar_pagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gestionar_pagosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_gestionar_pagos);
+
         btn_guardar.setText("Guardar");
         btn_guardar.setFocusable(false);
         btn_guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -85,25 +98,32 @@ public class ListReservasFrame extends javax.swing.JFrame {
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }));
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
-        getContentPane().add(detalle, java.awt.BorderLayout.LINE_END);
+getContentPane().add(detalle, java.awt.BorderLayout.LINE_END);
 
         estado.setText("jLabel1");
         getContentPane().add(estado, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_gestionar_pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gestionar_pagosActionPerformed
+        PagarFrame frame = new PagarFrame(getReservaSeleccionada());
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_gestionar_pagosActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_cancelarActionPerformed
         Reserva r = getReservaSeleccionada();
@@ -123,8 +143,9 @@ public class ListReservasFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_gestionar_pagos;
     private javax.swing.JButton btn_guardar;
-    private com.nicolas.hostal.vista.reservas.DetalleReservaPanel detalle;
+private com.nicolas.hostal.vista.reservas.DetalleReservaPanel detalle;
     private javax.swing.JLabel estado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;

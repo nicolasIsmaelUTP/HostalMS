@@ -46,6 +46,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btn_gestionar_pagos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gestionar pagos"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_gestionar_pagosActionPerformed"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JButton" name="btn_guardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>

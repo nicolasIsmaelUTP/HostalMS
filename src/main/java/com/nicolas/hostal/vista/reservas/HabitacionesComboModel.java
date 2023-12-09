@@ -21,7 +21,7 @@ public class HabitacionesComboModel extends DefaultComboBoxModel<Habitacion> {
         if (servicio != null) {
             removeAllElements();
 
-            lista = servicio.obtenerTodasHabitaciones();
+            lista = servicio.obtenerHabitacionesDisponibles();
             for (Habitacion h : lista) {
                 addElement(h);
             }
