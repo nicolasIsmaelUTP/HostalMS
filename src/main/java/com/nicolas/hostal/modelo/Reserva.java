@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Reserva implements Serializable {
     private Cliente cliente;
     @ManyToOne
     private Habitacion habitacion;
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     private List<Pago> pagos;
 
     public Reserva() {
@@ -132,6 +133,5 @@ public class Reserva implements Serializable {
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
-    
     
 }

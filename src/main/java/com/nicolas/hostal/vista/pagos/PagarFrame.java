@@ -1,27 +1,34 @@
 package com.nicolas.hostal.vista.pagos;
 
 import com.nicolas.hostal.modelo.Pago;
+import com.nicolas.hostal.modelo.Reserva;
 import com.nicolas.hostal.servicios.PagoServicio;
+
 import javax.swing.JOptionPane;
 
 public class PagarFrame extends javax.swing.JFrame {
-
-    private final PagoServicio servicio;
+    
+    private Reserva reserva;
+    
+    private final PagoServicio pagoServicio;
+    //private final ReservaServicio reservaServicio;
     
     private final PagosTableModel model;
     
-    public PagarFrame() {
+    public PagarFrame(Reserva reserva) {
         initComponents();
-        //setTitle("");
+        setTitle("Registro de pagos para la reserva de " + reserva.getCliente().getPrimerNombre());
         setResizable(false);
-        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(700, 200);
         setLocationRelativeTo(null);
         
-        this.servicio = new PagoServicio();
+        this.reserva = reserva;
+        this.pagoServicio = new PagoServicio();
+        //this.reservaServicio = new ReservaServicio();
         
         // Tabla
-        this.model = new PagosTableModel();
+        this.model = new PagosTableModel(reserva);
 
         // Copiar y pegar
         obtenerDatos();
@@ -46,7 +53,7 @@ public class PagarFrame extends javax.swing.JFrame {
 
     private Pago getPagoSeleccionado() {
         int id = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
-        return servicio.obtenerPagoPorId(id);
+        return pagoServicio.obtenerPagoPorId(id);
     }
 
     @SuppressWarnings("unchecked")
@@ -165,7 +172,7 @@ Pago pago = getPagoSeleccionado();
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Pago pago = getPagoSeleccionado();
-            servicio.eliminarPago(pago);
+            pagoServicio.eliminarPago(pago);
 
             obtenerDatos();
             model.fireTableDataChanged();
@@ -176,9 +183,10 @@ Pago pago = getPagoSeleccionado();
         detalle.saveData();
         Pago pago = detalle.getPago();
         if (pago.getId() == 0) {
-            servicio.registrarPago(pago);
+            pago.setReserva(this.reserva);
+            pagoServicio.registrarPago(pago);
         } else {
-            servicio.modificarPago(pago);
+            pagoServicio.modificarPago(pago);
         }
         // Limpiar detalle
         detalle.setPago(null);
@@ -191,14 +199,6 @@ Pago pago = getPagoSeleccionado();
         obtenerDatos();
         model.fireTableDataChanged();
     }//GEN-LAST:event_btn_guardarActionPerformed
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PagarFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;

@@ -101,6 +101,7 @@ public class PoblarServicio {
             clientes.insertar(new Cliente("99999999", "Mariana", "Beatriz", "Sanchez", "Martinez"));
             clientes.insertar(new Cliente("77777777", "Diego", "Andres", "Gomez", "Vargas"));
             clientes.insertar(new Cliente("44444444", "Lucia", "Valeria", "Huaman", "Mendoza"));
+            clientes.insertar(new Cliente("74088948", "Nicolas", "Ismael", "Alayo", "Arias"));
         }
     }
 
