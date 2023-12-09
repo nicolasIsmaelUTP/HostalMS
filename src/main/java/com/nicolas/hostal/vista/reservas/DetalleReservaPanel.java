@@ -217,15 +217,12 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_setcheckinActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckinActionPerformed
+        int option = JOptionPane.YES_OPTION;
         if (reserva.getCheckin() != null) {
-            int option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-in?",
+            option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-in?",
                     "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                reserva.setCheckin(new Date());
-                reservaServicio.modificarReserva(reserva);
-                loadData();
-            }
-        } else {
+        }
+        if (option == JOptionPane.YES_OPTION) {
             reserva.setCheckin(new Date());
             reservaServicio.modificarReserva(reserva);
             loadData();
@@ -233,17 +230,16 @@ public class DetalleReservaPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_btn_setcheckinActionPerformed
 
     private void btn_setcheckoutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_setcheckoutActionPerformed
-        if (reserva.getCheckout() != null) {
-            int option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-out?",
-                    "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                reserva.setCheckout(new Date());
-                reservaServicio.modificarReserva(reserva);
-                loadData();
-            }
-        } else {
-            reserva.setCheckout(new Date());
-            reservaServicio.modificarReserva(reserva);
+        if (reserva.getCheckin() == null) {
+            JOptionPane.showMessageDialog(this, "No se puede realizar el checkout sin haber realizado el checkin.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int option = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea actualizar el check-out?",
+                "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            reservaServicio.checkout(reserva);
             loadData();
         }
     }// GEN-LAST:event_btn_setcheckoutActionPerformed

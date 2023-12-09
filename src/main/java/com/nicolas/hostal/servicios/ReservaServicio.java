@@ -1,5 +1,6 @@
 package com.nicolas.hostal.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import com.nicolas.hostal.dao.HabitacionDAO;
@@ -38,5 +39,13 @@ public class ReservaServicio {
 
     public Reserva obtenerReservaPorId(int id) {
         return reservas.obtener(id);
+    }
+
+    // Checkout
+    public void checkout(Reserva reserva) {
+        reserva.getHabitacion().setDisponibilidad(true);
+        reserva.setCheckout(new Date());
+        reservas.modificar(reserva);
+        habitaciones.modificar(reserva.getHabitacion());
     }
 }
