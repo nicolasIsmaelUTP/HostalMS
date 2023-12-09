@@ -1,9 +1,12 @@
 package com.nicolas.hostal.vista.pagos;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.modelo.Pago;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class DetallePagoPanel extends javax.swing.JPanel {
 
@@ -44,12 +47,10 @@ public class DetallePagoPanel extends javax.swing.JPanel {
         this.editable = editable;
         cb_metodo.setEnabled(editable);
         tf_monto.setEditable(editable);
-        tf_fechahora.setEditable(editable);
     }
 
     public void loadData() {
         if (pago != null) {
-            
             // Recorre el combo box para encontrar el metodo de pago
             for (int i = 0; i < cb_metodo.getItemCount(); i++) {
                 MetodoPago mp = cb_metodo.getItemAt(i);
@@ -59,8 +60,10 @@ public class DetallePagoPanel extends javax.swing.JPanel {
                 }
             }
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+
             tf_monto.setText(String.valueOf(pago.getMonto()));
-            tf_fechahora.setText(String.valueOf(pago.getFecha()));
+            tf_fechahora.setText(dateFormat.format(pago.getFecha()));
 
         } else {
             tf_monto.setText("");
@@ -78,7 +81,11 @@ public class DetallePagoPanel extends javax.swing.JPanel {
         pago.setMetodoPago(mp);
 
         pago.setMonto(Double.parseDouble(tf_monto.getText()));
-        pago.setFecha(new Date());
+
+        // Manejando la fecha
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        pago.setFecha(date);
     }
 
     @SuppressWarnings("unchecked")

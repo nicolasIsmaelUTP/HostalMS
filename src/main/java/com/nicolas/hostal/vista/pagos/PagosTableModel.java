@@ -2,6 +2,8 @@ package com.nicolas.hostal.vista.pagos;
 
 import com.nicolas.hostal.modelo.Pago;
 import com.nicolas.hostal.servicios.PagoServicio;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -43,12 +45,14 @@ public class PagosTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+
         Pago preguntado = datos.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> preguntado.getId();
             case 1 -> preguntado.getMonto();
             case 2 -> preguntado.getMetodoPago().getNombre();
-            case 3 -> preguntado.getFecha();
+            case 3 -> dateFormat.format(preguntado.getFecha());
             default -> "";
         };
     }
