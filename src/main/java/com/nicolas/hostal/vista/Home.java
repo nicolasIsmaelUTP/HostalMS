@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista;
 
+import com.nicolas.hostal.vista.pagos.ListMetodosPagoFrame;
 import com.nicolas.hostal.vista.clientes.ListClientesFrame;
 import com.nicolas.hostal.vista.habitaciones.ListHabitacionesFrame;
 import com.nicolas.hostal.vista.habitaciones.ListTiposHabitacionFrame;

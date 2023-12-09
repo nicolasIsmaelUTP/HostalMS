@@ -1,4 +1,4 @@
-package com.nicolas.hostal.vista;
+package com.nicolas.hostal.vista.pagos;
 
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.servicios.MetodoPagoServicio;
@@ -56,7 +56,7 @@ public class ListMetodosPagoFrame extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        detalle = new com.nicolas.hostal.vista.DetalleMetodoPagoPanel();
+        detalle = new com.nicolas.hostal.vista.pagos.DetalleMetodoPagoPanel();
         txt_estado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,7 +192,7 @@ public class ListMetodosPagoFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_nuevo;
-    private com.nicolas.hostal.vista.DetalleMetodoPagoPanel detalle;
+    private com.nicolas.hostal.vista.pagos.DetalleMetodoPagoPanel detalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;

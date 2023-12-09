@@ -141,7 +141,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="com.nicolas.hostal.vista.DetalleMetodoPagoPanel" name="detalle">
+    <Component class="com.nicolas.hostal.vista.pagos.DetalleMetodoPagoPanel" name="detalle">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="After"/>

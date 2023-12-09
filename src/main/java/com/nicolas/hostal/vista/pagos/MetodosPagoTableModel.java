@@ -1,4 +1,4 @@
-package com.nicolas.hostal.vista;
+package com.nicolas.hostal.vista.pagos;
 
 import com.nicolas.hostal.modelo.MetodoPago;
 import com.nicolas.hostal.servicios.MetodoPagoServicio;
