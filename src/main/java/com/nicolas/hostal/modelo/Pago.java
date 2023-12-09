@@ -1,21 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nicolas.hostal.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- *
- * @author ISAAC
- */
-public class Pago {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+public class Pago implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double monto;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    @ManyToOne
+    private MetodoPago metodoPago;
+    @ManyToOne
+    private Reserva reserva;
 
     public Pago() {
+    }
+
+    public Pago(double monto, MetodoPago metodoPago) {
+        this.monto = monto;
+        this.fecha = new Date();
+        this.metodoPago = metodoPago;
+    }
+
+    public Pago(double monto, Date fecha, MetodoPago metodoPago) {
+        this.monto = monto;
+        this.fecha = fecha;
+        this.metodoPago = metodoPago;
     }
 
     public int getId() {
@@ -41,6 +62,12 @@ public class Pago {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
+
+    public MetodoPago getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(MetodoPago metodoPago) {
+        this.metodoPago = metodoPago;
+    }
 }

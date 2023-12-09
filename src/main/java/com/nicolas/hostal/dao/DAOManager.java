@@ -23,4 +23,6 @@ public interface DAOManager {
     ItemProductoDAO getItemProductoDAO();
     
     ReservaDAO getReservaDAO();
+    
+    PagoDAO getPagoDAO();
 }
