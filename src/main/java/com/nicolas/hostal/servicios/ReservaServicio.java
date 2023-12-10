@@ -67,6 +67,10 @@ public class ReservaServicio {
      */
     public boolean validarReserva(Reserva reserva) {
         boolean validacion = true;
+        if (calcularHoras(reserva) < 3){
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "La estadía mínima es de 3 horas");
+        }
         if (reserva.getNumero_personas() <= 0 || reserva.getNumero_personas() > 3) {
             validacion = false;
             JOptionPane.showMessageDialog(null, "El numero de personas debe ser entre 1 y 3");

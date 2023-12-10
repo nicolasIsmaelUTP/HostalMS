@@ -206,14 +206,13 @@ public class ReservarFrame extends javax.swing.JFrame {
         if (!reservaServicio.validarReserva(reserva)) {
             return;
         }
-        
-        JOptionPane.showMessageDialog(this, "Vas a pagar: $"+reservaServicio.calcularTotal(reserva));
-        
+                
         // Guardando la reserva
         reservaServicio.crearReserva(reserva);
+        double totalPagar = reservaServicio.calcularTotal(reserva);
         JOptionPane.showMessageDialog(this, "Reserva creada para el cliente " + cliente.getPrimerNombre() + " "
-                + cliente.getApellidoPaterno() + " en la habitación " + habitacion.getNumero(), "Reserva creada",
-                JOptionPane.INFORMATION_MESSAGE);
+            + cliente.getApellidoPaterno() + " en la habitación " + habitacion.getNumero() + ". Total a pagar: S/" + totalPagar, "Reserva creada",
+            JOptionPane.INFORMATION_MESSAGE);
 
         // Preguntar si se desea registrar pagos para confirmar la reserva
         int confirmarPagos = JOptionPane.showConfirmDialog(this, "¿Deseas registrar pagos para esta reserva y confirmarla?",
