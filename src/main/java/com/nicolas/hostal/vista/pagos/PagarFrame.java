@@ -1,5 +1,6 @@
 package com.nicolas.hostal.vista.pagos;
 
+import com.nicolas.hostal.modelo.EstadoReserva;
 import com.nicolas.hostal.modelo.Pago;
 import com.nicolas.hostal.modelo.Reserva;
 import com.nicolas.hostal.servicios.PagoServicio;
@@ -52,7 +53,19 @@ public class PagarFrame extends javax.swing.JFrame {
         estado.setText("Actualizando modelo...");
         model.updateModel();
         this.tabla.setModel(this.model);
-        estado.setText("Debe S/" + reservaServicio.calcularDeuda(reserva));
+
+        // Actualizar estado de la reserva
+        double deuda = Double.parseDouble(reservaServicio.calcularDeuda(reserva));
+        if (deuda <= 0) {
+            estado.setText("Reserva pagada. Vuelto: S/" + (deuda * -1));
+            reserva.setEstado(EstadoReserva.CONFIRMADA);
+        } else {
+            estado.setText("Debe S/" + deuda);
+            if (reserva.getEstado() == EstadoReserva.CONFIRMADA) {
+                reserva.setEstado(EstadoReserva.PENDIENTE);
+            }
+        }
+        reservaServicio.modificarReserva(reserva);
     }
 
     private Pago getPagoSeleccionado() {
