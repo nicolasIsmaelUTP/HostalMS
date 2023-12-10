@@ -5,6 +5,8 @@ import com.nicolas.hostal.dao.mysql.MySQLDaoManager;
 import com.nicolas.hostal.modelo.Cliente;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class ClienteServicio {
     
     ClienteDAO clientes;
@@ -40,4 +42,47 @@ public class ClienteServicio {
     public boolean existeCliente(String dni){
         return (clientes.obtener(dni) != null);
     }
+
+    /**
+     * Valida los datos de un cliente.
+     * 
+     * @param cliente el cliente a validar
+     * @return true si los datos son válidos, false de lo contrario
+     */
+    public boolean validarCliente(Cliente cliente) {
+        boolean validacion = true;
+        if (cliente.getNumDoc().length() != 8) {
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "El numero de documento debe tener 8 digitos");
+        }
+        if (cliente.getPrimerNombre().isEmpty()) {
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "Falta el primer nombre");
+        }
+        if (cliente.getApellidoPaterno().isEmpty()) {
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "Falta el apellido paterno");
+        }
+        if (cliente.getApellidoMaterno().isEmpty()) {
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "Falta el apellido materno");
+        }
+        return validacion;
+    }
+
+    /**
+     * Valida si el número de documento de un cliente tiene 8 dígitos.
+     * 
+     * @param cliente el cliente a validar
+     * @return true si el número de documento tiene 8 dígitos, false de lo contrario
+     */
+    public boolean validarClienteSoloNumDoc(Cliente cliente) {
+        boolean validacion = true;
+        if (cliente.getNumDoc().length() != 8) {
+            validacion = false;
+            JOptionPane.showMessageDialog(null, "El numero de documento debe tener 8 digitos");
+        }
+        return validacion;
+    }
+
 }

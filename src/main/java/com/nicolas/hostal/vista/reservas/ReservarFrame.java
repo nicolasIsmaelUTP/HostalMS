@@ -188,6 +188,10 @@ public class ReservarFrame extends javax.swing.JFrame {
         if (cliente == null) {
             cliente = new Cliente();
             cliente.setNumDoc(tf_dni.getText());
+            // Validando el cliente
+            if (!clienteServicio.validarClienteSoloNumDoc(cliente)) {
+                return;
+            }
             clienteServicio.registrarCliente(cliente);
         }
         // Creando la reserva
@@ -197,6 +201,12 @@ public class ReservarFrame extends javax.swing.JFrame {
         this.reserva.setEstado(EstadoReserva.PENDIENTE);
         this.reserva.setCliente(cliente);
         this.reserva.setHabitacion(habitacion);
+
+        // Validando la reserva
+        if (!reservaServicio.validarReserva(reserva)) {
+            return;
+        }
+        
         // Guardando la reserva
         reservaServicio.crearReserva(reserva);
         JOptionPane.showMessageDialog(this, "Reserva creada para el cliente " + cliente.getPrimerNombre() + " "
