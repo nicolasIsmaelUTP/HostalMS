@@ -71,9 +71,9 @@ public class ReservaServicio {
             validacion = false;
             JOptionPane.showMessageDialog(null, "La estadía mínima es de 3 horas");
         }
-        if (reserva.getNumero_personas() <= 0 || reserva.getNumero_personas() > 3) {
+        if (reserva.getNumero_personas() <= 0 || reserva.getNumero_personas() > 2) {
             validacion = false;
-            JOptionPane.showMessageDialog(null, "El numero de personas debe ser entre 1 y 3");
+            JOptionPane.showMessageDialog(null, "El numero de personas debe ser entre 1 y 2");
         }
         if (reserva.getHora_prevista_llegada().after(reserva.getHora_prevista_salida())) {
             validacion = false;
@@ -121,5 +121,17 @@ public class ReservaServicio {
         }
 
         return total;
+    }
+
+    /**
+     * Calcula la deuda pendiente de una reserva.
+     * 
+     * @param reserva La reserva para la cual se calculará la deuda.
+     * @return La deuda pendiente en formato de cadena de caracteres.
+     */
+    public String calcularDeuda(Reserva reserva) {
+        double total = calcularTotal(reserva);
+        double pagado = reserva.getPagos().stream().mapToDouble(p -> p.getMonto()).sum();
+        return String.format("%.2f", total - pagado);
     }
 }

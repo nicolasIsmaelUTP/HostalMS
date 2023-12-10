@@ -2,7 +2,6 @@ package com.nicolas.hostal.vista.pagos;
 
 import com.nicolas.hostal.modelo.Pago;
 import com.nicolas.hostal.modelo.Reserva;
-import com.nicolas.hostal.servicios.PagoServicio;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,17 +12,14 @@ public class PagosTableModel extends AbstractTableModel{
     
     private Reserva reserva;
 
-    private final PagoServicio servicio;
-    
     private List<Pago> datos = new ArrayList<>();
     
     public PagosTableModel(Reserva reserva){
-        this.servicio = new PagoServicio();
         this.reserva = reserva;    
     }
     
     public void updateModel(){
-        datos = servicio.obtenerPagosPorReserva(reserva);
+        datos = reserva.getPagos();
     }
 
     @Override

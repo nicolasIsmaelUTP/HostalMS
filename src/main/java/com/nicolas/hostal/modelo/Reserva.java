@@ -38,13 +38,14 @@ public class Reserva implements Serializable {
     private Cliente cliente;
     @ManyToOne
     private Habitacion habitacion;
-    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pago> pagos;
 
     public Reserva() {
     }
 
-    public Reserva(Date hora_prevista_llegada, Date hora_prevista_salida, int numero_personas, Cliente cliente, Habitacion habitacion) {
+    public Reserva(Date hora_prevista_llegada, Date hora_prevista_salida, int numero_personas, Cliente cliente,
+            Habitacion habitacion) {
         this.hora_prevista_llegada = hora_prevista_llegada;
         this.hora_prevista_salida = hora_prevista_salida;
         this.numero_personas = numero_personas;
@@ -53,7 +54,8 @@ public class Reserva implements Serializable {
         this.habitacion = habitacion;
     }
 
-    public Reserva(Date hora_prevista_llegada, Date hora_prevista_salida, int numero_personas, EstadoReserva estado, Cliente cliente, Habitacion habitacion) {
+    public Reserva(Date hora_prevista_llegada, Date hora_prevista_salida, int numero_personas, EstadoReserva estado,
+            Cliente cliente, Habitacion habitacion) {
         this.hora_prevista_llegada = hora_prevista_llegada;
         this.hora_prevista_salida = hora_prevista_salida;
         this.numero_personas = numero_personas;
@@ -61,7 +63,7 @@ public class Reserva implements Serializable {
         this.cliente = cliente;
         this.habitacion = habitacion;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -133,5 +135,61 @@ public class Reserva implements Serializable {
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
-    
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+
+    // Agregar un pago a la reserva
+    public Pago agregarPago(Pago pago) {
+        this.pagos.add(pago);
+        pago.setReserva(this);
+        return pago;
+    }
+
+    // Eliminar un pago de la reserva
+    public void eliminarPago(Pago pago) {
+        for (Pago p : this.pagos) {
+            if (p.getId() == pago.getId()) {
+                this.pagos.remove(p);
+                break;
+            }
+        }
+    }
+
+    // Modificar un pago de la reserva
+    public void modificarPago(Pago pago) {
+        for (Pago p : this.pagos) {
+            if (p.getId() == pago.getId()) {
+                this.pagos.remove(p);
+                this.pagos.add(pago);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Reserva other = (Reserva) obj;
+        return this.id == other.id;
+    }
 }
