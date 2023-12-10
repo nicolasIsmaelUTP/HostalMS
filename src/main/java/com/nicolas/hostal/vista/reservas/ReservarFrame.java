@@ -207,6 +207,8 @@ public class ReservarFrame extends javax.swing.JFrame {
             return;
         }
         
+        JOptionPane.showMessageDialog(this, "Vas a pagar: $"+reservaServicio.calcularTotal(reserva));
+        
         // Guardando la reserva
         reservaServicio.crearReserva(reserva);
         JOptionPane.showMessageDialog(this, "Reserva creada para el cliente " + cliente.getPrimerNombre() + " "
