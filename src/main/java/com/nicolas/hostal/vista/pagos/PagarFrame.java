@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 
 public class PagarFrame extends javax.swing.JFrame {
     
-    private final Reserva reserva;
+    private Reserva reserva;
     
     private final PagoServicio pagoServicio;
     private final ReservaServicio reservaServicio;
     
-    private final PagosTableModel model;
+    private PagosTableModel model;
     
     public PagarFrame(Reserva reserva) {
         initComponents();
@@ -47,9 +47,12 @@ public class PagarFrame extends javax.swing.JFrame {
     }
     
     private void obtenerDatos() {
+        this.reserva = reservaServicio.obtenerReservaPorId(this.reserva.getId());
+        this.model = new PagosTableModel(this.reserva);
         estado.setText("Actualizando modelo...");
         model.updateModel();
-        estado.setText("Debe $" + reservaServicio.calcularDeuda(reserva));
+        this.tabla.setModel(this.model);
+        estado.setText("Debe S/" + reservaServicio.calcularDeuda(reserva));
     }
 
     private Pago getPagoSeleccionado() {
@@ -70,7 +73,6 @@ public class PagarFrame extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        btn_aplicar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         estado = new javax.swing.JLabel();
@@ -131,17 +133,6 @@ public class PagarFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator3);
         jToolBar1.add(jSeparator4);
 
-        btn_aplicar.setText("Aplicar y cerrar");
-        btn_aplicar.setFocusable(false);
-        btn_aplicar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_aplicar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_aplicar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_aplicarActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btn_aplicar);
-
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -189,9 +180,8 @@ Pago pago = getPagoSeleccionado();
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             Pago pago = getPagoSeleccionado();
-            //pagoServicio.eliminarPago(pago);
             reserva.eliminarPago(pago);
-            //reservaServicio.modificarReserva(reserva);
+            reservaServicio.modificarReserva(reserva);
 
             obtenerDatos();
             model.fireTableDataChanged();
@@ -202,14 +192,12 @@ Pago pago = getPagoSeleccionado();
         detalle.saveData();
         Pago pago = detalle.getPago();
         if (pago.getId() == 0) {
-            //pagoServicio.registrarPago(pago);
             reserva.agregarPago(pago);
-            //reservaServicio.modificarReserva(reserva);
         } else {
-            //pagoServicio.modificarPago(pago);
             reserva.modificarPago(pago);
-            //reservaServicio.modificarReserva(reserva);
         }
+        reservaServicio.modificarReserva(reserva);
+
         // Limpiar detalle
         detalle.setPago(null);
         detalle.setEditable(false);
@@ -222,13 +210,7 @@ Pago pago = getPagoSeleccionado();
         model.fireTableDataChanged();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
-        reservaServicio.modificarReserva(reserva);
-        dispose();
-    }//GEN-LAST:event_btn_aplicarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_aplicar;
     private javax.swing.JButton btn_borrar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
